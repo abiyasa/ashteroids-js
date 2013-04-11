@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 
         jshint: {
             files: [
-                'Gruntfile.js', 'build.js',
+                'Gruntfile.js', 'build.js', 'build.min.js',
                 'src/**/*.js', 'lib/brejep/*.js'
             ],
             options: {
