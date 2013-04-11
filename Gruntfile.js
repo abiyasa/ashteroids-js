@@ -11,8 +11,52 @@ module.exports = function (grunt) {
                 'src/**/*.js', 'lib/brejep/*.js'
             ],
             options: {
+                // Define globals exposed by modern browsers.
                 browser: true,
-                white: false
+
+                // Define globals exposed by jQuery.
+                jquery: false,
+
+                // Douglas Crockford JavaScript coding style.
+                white: false,
+
+                // Force all variable names to use either camelCase style or UPPER_CASE
+                // with underscores.
+                camelcase: true,
+
+                // Prohibit use of == and != in favor of === and !==.
+                eqeqeq: true,
+
+                // Suppress warnings about == null comparisons.
+                eqnull: true,
+
+                // Enforce tab width of several spaces.
+                indent: 4,
+
+                // Prohibit use of a variable before it is defined.
+                latedef: true,
+
+                // Require capitalized names for constructor functions.
+                newcap: true,
+
+                // Enforce use of single quotation marks for strings.
+                quotmark: 'single',
+
+                // Prohibit trailing whitespace.
+                trailing: true,
+
+                // Prohibit use of explicitly undeclared variables.
+                undef: true,
+
+                // Warn when variables are defined but never used.
+                unused: false,
+
+                // Custom globals
+                predef : [
+                    'define',
+                    'require',
+                    'module'
+                ]
             }
         },
 
@@ -20,12 +64,12 @@ module.exports = function (grunt) {
         requirejs: {
             compile: {
                 options: {
-                    mainConfigFile: "build.js"
+                    mainConfigFile: 'build.js'
                 }
             },
             minified: {
                 options: {
-                    mainConfigFile: "build.min.js"
+                    mainConfigFile: 'build.min.js'
                 }
             }
         },
