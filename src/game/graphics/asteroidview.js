@@ -35,7 +35,7 @@ define(function() {
         graphic.beginPath();
         graphic.translate( this.x, this.y );
         graphic.rotate( this.rotation );
-        graphic.fillStyle = "#FFFFFF";
+        graphic.fillStyle = '#FFFFFF';
         graphic.moveTo( this.radius, 0 );
         for( var i = 0; i<this.points.length; ++i){
             graphic.lineTo( this.points[i].x, this.points[i].y );

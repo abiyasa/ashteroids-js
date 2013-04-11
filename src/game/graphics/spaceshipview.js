@@ -20,7 +20,7 @@ define(function () {
         graphic.beginPath();
         graphic.translate( this.x, this.y );
         graphic.rotate( this.rotation );
-        graphic.fillStyle =  "#FFFFFF";
+        graphic.fillStyle =  '#FFFFFF';
         graphic.moveTo( 8, 0 );
         graphic.lineTo( -7, 7 );
         graphic.lineTo( -4, 0 );

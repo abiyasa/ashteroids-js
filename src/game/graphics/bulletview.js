@@ -19,7 +19,7 @@ define(function () {
         graphic.save();
         graphic.rotate( this.rotation );
         graphic.beginPath();
-        graphic.fillStyle = "#FFFFFF";
+        graphic.fillStyle = '#FFFFFF';
         graphic.arc( this.x, this.y, 2, 0, Math.PI*2, false );
         graphic.fill();
         graphic.restore();
