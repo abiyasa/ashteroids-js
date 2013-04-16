@@ -14,6 +14,9 @@ module.exports = function (grunt) {
                 // Define globals exposed by modern browsers.
                 browser: true,
 
+                // for logging poor-man's debugging: console, alert, ...
+                devel: true,
+
                 // Define globals exposed by jQuery.
                 jquery: false,
 
