@@ -1,0 +1,11 @@
+{
+    "name": "ashteroids2",
+    "version": "0.1.0",
+    "description": "A simple Asteroids game using Ash framework & multi renderers",
+    "main": "build/ashteroids.min.js",
+    "dependencies": {
+        "backbone": "latests",
+        "underscore": "latests",
+        "backbone.marionette": "latests"
+    }
+}
