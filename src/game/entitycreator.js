@@ -60,10 +60,10 @@ define([
             return asteroid;
         },
 
-        createSpaceship: function() {
+        createSpaceship: function(x, y) {
             var spaceship = new Ash.Entity()
                 .add(new Spaceship())
-                .add(new Position(400, 300, 1, 6))
+                .add(new Position(x, y, 1, 6))
                 .add(new Motion(0, 0, 0, 15))
                 .add(new MotionControls(Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, 100, 3))
                 .add(new Gun(8, 0, 0.3, 2))

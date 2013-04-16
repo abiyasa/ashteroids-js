@@ -40,7 +40,7 @@ define([
                     }
                     if(clearToAddSpaceship)
                     {
-                        this.creator.createSpaceship();
+                        this.creator.createSpaceship(this.gameState.width * 0.5, this.gameState.height * 0.5);
                         this.gameState.lives--;
                     }
                 }
