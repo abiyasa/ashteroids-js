@@ -11,7 +11,7 @@ requirejs.config({
     paths: {
         // JavaScript folders.
         brejep: 'lib/brejep',
-        utils: 'lib/utils',
+        utils: 'src/utils',
         game: 'src/game',
 
         // Libraries

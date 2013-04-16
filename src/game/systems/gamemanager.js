@@ -1,7 +1,7 @@
 define([
     'ash', 'game/nodes/spaceshipcollision',
     'game/nodes/asteroidcollision', 'game/nodes/bulletcollision',
-    'brejep/point'
+    'utils/point'
 ], function (Ash, SpaceshipCollisionNode, AsteroidCollisionNode,
     BulletCollisionNode, Point) {
 

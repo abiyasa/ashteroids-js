@@ -1,4 +1,4 @@
-define(['ash', 'brejep/point'], function (Ash, Point) {
+define(['ash', 'utils/point'], function (Ash, Point) {
     var Position = Ash.Class.extend({
         constructor: function (x, y, rotation, collisionRadius) {
             this.position = new Point(x, y);

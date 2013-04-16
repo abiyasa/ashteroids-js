@@ -10,8 +10,8 @@ define([
     'game/systems/systempriorities',
     'game/entitycreator',
     'ash',
-    'brejep/tickprovider',
-    'brejep/keypoll'
+    'utils/tickprovider',
+    'utils/keypoll'
 ], function (
     GameState,
     GameManager,

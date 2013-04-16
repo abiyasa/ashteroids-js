@@ -1,6 +1,6 @@
 require([
     'brejep/fillsnfixes',
-    'brejep/keypoll',
+    'utils/keypoll',
     'game/asteroids',
     'Stats'
 ], function(Fixes, KeyPoll, Asteroids, Stats) {

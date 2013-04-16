@@ -12,7 +12,7 @@ define([
     'game/graphics/asteroidview',
     'game/graphics/spaceshipview',
     'game/graphics/bulletview',
-    'brejep/keyboard'
+    'utils/keyboard'
 ], function (
     Ash,
     Asteroid,

@@ -1,4 +1,4 @@
-define(['ash', 'brejep/point'], function (Ash, Point) {
+define(['ash', 'utils/point'], function (Ash, Point) {
     var Gun = Ash.Class.extend({
         constructor: function (offsetX, offsetY, minimumShotInterval, bulletLifetime) {
             this.shooting = false;
