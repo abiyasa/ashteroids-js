@@ -6,6 +6,7 @@
     "dependencies": {
         "backbone": "latests",
         "underscore": "latests",
-        "backbone.marionette": "latests"
+        "jquery": "latest",
+        "requirejs-text": "latest"
     }
 }

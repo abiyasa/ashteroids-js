@@ -9,14 +9,17 @@ require.config({
         brejep: '../lib/brejep',
         utils: 'utils',
         game: 'game',
+        templates: '../templates',
 
         // Libraries
         ash: '../lib/ash/ash',
         Stats: '../lib/utils/Stats',
-        jquery: '../components/jquery/jquery.js',
-        underscore: '../components/underscore/underscore.js',
-        backbone: '../components/backbone/backbone.js',
-        marionette: '../components/backbone.marionette/lib/backbone.marionette.js'
+        jquery: '../components/jquery/jquery',
+        underscore: '../components/underscore/underscore',
+        backbone: '../components/backbone/backbone',
+
+        // plugins
+        text: '../components/requirejs-text/text'
     },
 
     // Sets the configuration for your third party scripts that are not AMD compatible
@@ -33,10 +36,6 @@ require.config({
         backbone: {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
-        },
-        marionette: {
-            deps : ['jquery', 'underscore', 'backbone'],
-            exports : 'Marionette'
         }
     }
 });
