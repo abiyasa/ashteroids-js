@@ -2,7 +2,7 @@
 require.config({
 
     // Initialize the application with the main application file.
-    deps: ['asteroids-app'],
+    deps: ['main-app'],
 
     paths: {
         // JavaScript folders.
@@ -14,7 +14,10 @@ require.config({
         // Libraries
         ash: '../lib/ash/ash',
         Stats: '../lib/utils/Stats',
-        jquery: '../components/jquery/jquery',
+        jquery: [
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
+            'components/jquery/jquery'
+        ],
         underscore: '../components/underscore/underscore',
         backbone: '../components/backbone/backbone',
 

@@ -13,16 +13,33 @@ requirejs.config({
         brejep: 'lib/brejep',
         utils: 'src/utils',
         game: 'src/game',
+        templates: 'templates',
 
         // Libraries
         ash: 'lib/ash/ash',
-        Stats: 'lib/utils/Stats'
+        Stats: 'lib/utils/Stats',
+        jquery: 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
+        underscore: 'components/underscore/underscore',
+        backbone: 'components/backbone/backbone',
+
+        // plugins
+        text: 'components/requirejs-text/text'
     },
 
     // Sets the configuration for your third party scripts that are not AMD compatible
     shim: {
-        'Stats': {
-            'exports': 'Stats'
+        Stats: {
+            exports: 'Stats'
+        },
+        jquery: {
+            exports: '$'
+        },
+        underscore: {
+            exports: '_'
+        },
+        backbone: {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
         }
     },
 
@@ -33,8 +50,8 @@ requirejs.config({
 
     // files to include along with almond.  only lib/skeleton.js is defined, as
     // it pulls in the rest of the dependencies automatically.
-    include: [ 'src/asteroids-app' ],
+    include: [ 'src/main-app' ],
 
     // build file destination, relative to the build file itself
-    out: 'build/ashteroids.min.js'
+    out: 'build/ashteroids.js'
 });
