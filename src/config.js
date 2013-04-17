@@ -13,7 +13,7 @@ require.config({
 
         // Libraries
         ash: '../lib/ash/ash',
-        Stats: '../lib/utils/Stats',
+        stats: '../components/stats.js/src/Stats.js',
         jquery: [
             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
             'components/jquery/jquery'
@@ -27,7 +27,7 @@ require.config({
 
     // Sets the configuration for your third party scripts that are not AMD compatible
     shim: {
-        Stats: {
+        stats: {
             exports: 'Stats'
         },
         jquery: {
