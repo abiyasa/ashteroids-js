@@ -13,7 +13,7 @@ require.config({
 
         // Libraries
         ash: '../lib/ash/ash',
-        stats: '../components/stats.js/src/Stats.js',
+        stats: '../components/stats.js/src/Stats',
         jquery: [
             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
             'components/jquery/jquery'
