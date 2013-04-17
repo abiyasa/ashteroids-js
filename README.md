@@ -9,28 +9,50 @@ If you modify or customize the code, you have to re-build the sources in order t
 Or you can run the game in development version (see the [topic below](#running-the-development-version).
 
 ## Building/compiling
-This project uses RequireJS (AMD) & [Grunt](http://www.gruntjs.com) for the building process.
+This project uses [RequireJS](http://requirejs.org/) for AMD, [Grunt](http://www.gruntjs.com) for the building process, and
+Twitter's [Bower](https://github.com/twitter/bower) for package manager.
+
 All JavaScript files, including the Ash Framework, will be concatenated into 1 file & minified using UglifyJS.
 
 ### Dependencies
 * Node.js
 * Grunt's CLI installed globally using `npm install -g grunt-cli`
-* `npm install` from the project folder. This will automatically download & install the required modules
+* Twitter Bower installed globally using `npm install -g bower`
 
-### Command lines
-* `grunt` will run jshint & build the game files. The results can be found at folder `build` (both minified & non-minified version)
+Once you have all above installed, go to project folder and do:
 
-## Running the *Development Version*
+```
+npm install
+```
+
+That will automatically download & install the required modules for building process. After that, do:
+
+```
+bower install
+```
+
+That will automatically download & install other JavaScript libraries which are used by this application.
+
+### Usage
+Once you have all dependencies installed, you can do as many build as you like by:
+
+```
+grunt
+```
+
+That will run jshint & build the game files. The results can be found on folder `build`, both minified & non-minified version.
+
+## Running the Development Version
 Open `ashteroids.dev.html` and you will run the non build-and-minified version of the game.
 Running the development version allows you to debug the source codes easily or see any changes immediately without having to build.
 
 ## Grunt command lines
-These are the list of grunt commands:
+These are the list of other grunt commands you can use:
 
-* `grunt connect` to start a local webserver (using port 9000 by default). From your browser, you can go to `http://localhost:9000/ashteroids.dev.html`.
-* `grunt jshint` to jshint all JS files
-* `grunt requirejs:compile` to build the non-minified version
-* `grunt requirejs:minified` to build the minified version
+* `grunt connect` : start a local webserver (using port 9000 by default). From your browser, you can go to `http://localhost:9000/ashteroids.dev.html`.
+* `grunt jshint` : jshint all JS files
+* `grunt requirejs:compile` : build the non-minified version
+* `grunt requirejs:minified` : build the minified version
 
 ## License
 MIT License
