@@ -2,8 +2,9 @@ require([
     'jquery',
     'utils/ScreenManager',
     'game/screens/IntroScreen',
-    'game/screens/MainScreen'
-], function($, ScreenManager, IntroScreen, MainScreen) {
+    'game/screens/MainScreen',
+    'game/screens/PlayScreen'
+], function($, ScreenManager, IntroScreen, MainScreen, PlayScreen) {
     'use strict';
 
     // for managing our screens
@@ -24,11 +25,9 @@ require([
             showMainScreen();
             break;
 
-        /*
         case 'play':
             showPlayScreen();
             break;
-        */
         }
     };
 
@@ -47,12 +46,11 @@ require([
         displayScreen(newScreen);
     };
 
-    /*
     var showPlayScreen = function () {
         var newScreen = new PlayScreen();
         displayScreen(newScreen);
+        newScreen.startGame();
     };
-    */
 
     // start!
     onChangeScreen('intro');
