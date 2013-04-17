@@ -42,14 +42,21 @@ grunt
 
 That will run jshint & build the game files. The results can be found on folder `build`, both minified & non-minified version.
 
-## Running the Development Version
-Open `ashteroids.dev.html` and you will run the non build-and-minified version of the game.
-Running the development version allows you to debug the source codes easily or see any changes immediately without having to build.
+## Running the Development Mode
+Running the development mode allows you to debug the source codes easily or see any changes immediately without having to build.
+To run in development mode, you need a local web-server. This is due to XMLHttpRequest for loading screen templates.
+
+But don't worry, Grunt also includes a local web server. You just need to do:
+
+```
+grunt connect
+```
+
+That will start a local webserver using port 9000 by default. From your browser, you can go to `http://localhost:9000/ashteroids.dev.html`.
 
 ## Grunt command lines
 These are the list of other grunt commands you can use:
 
-* `grunt connect` : start a local webserver (using port 9000 by default). From your browser, you can go to `http://localhost:9000/ashteroids.dev.html`.
 * `grunt jshint` : jshint all JS files
 * `grunt requirejs:compile` : build the non-minified version
 * `grunt requirejs:minified` : build the minified version
