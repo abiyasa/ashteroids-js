@@ -31,6 +31,7 @@ define([
             this.stats.setMode(0); // 0: fps, 1: ms
         },
 
+        // create canvas element dynamically
         _createCanvas: function () {
             var canvasElem = document.createElement('canvas');
             canvasElem.setAttribute('id', 'game_stage');
@@ -46,7 +47,7 @@ define([
 
             // init & show canvas
             this.gameCanvas = this._createCanvas();
-            var $gamewrapper = this.$('.game-canvas').append(this.gameCanvas);
+            var $gamewrapper = this.$('.game-container').append(this.gameCanvas);
 
             // render stats
             var $stat = $(this.stats.domElement);
