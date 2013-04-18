@@ -79,11 +79,10 @@ define([
         },
 
         start: function () {
-            this.gameState.level = 0;
-            this.gameState.lives = 3;
-            this.gameState.points = 0;
+            this.gameState.reset(0, 3, 0);
 
             this.tickProvider.add(this.engine.update, this.engine);
+            this.tickProvider.add(this.checkGameState, this);
             this.tickProvider.start();
         },
 
@@ -94,6 +93,13 @@ define([
 
             this.engine.removeAllSystems();
             this.engine.removeAllEntities();
+        },
+
+        // checking game state and trigger events
+        checkGameState: function () {
+            if (this.gameState.state === this.gameState.STATUS_GAME_OVER) {
+                // TODO trigger game over
+            }
         }
     });
 
