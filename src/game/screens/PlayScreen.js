@@ -70,7 +70,7 @@ define([
 
         // Stops & destroy the game
         stopGame: function () {
-            // TODO top & destroy the game!
+            this.asteroids.stop();
         }
     });
 

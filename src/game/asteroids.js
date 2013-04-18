@@ -85,6 +85,15 @@ define([
 
             this.tickProvider.add(this.engine.update, this.engine);
             this.tickProvider.start();
+        },
+
+        // stop & destory the game
+        stop: function () {
+            this.tickProvider.stop();
+            this.tickProvider.removeAll();
+
+            this.engine.removeAllSystems();
+            this.engine.removeAllEntities();
         }
     });
 
