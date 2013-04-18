@@ -27,6 +27,10 @@ define([
             this.ticked.remove(listener, context);
         },
 
+        removeAll: function () {
+            this.ticked.removeAll();
+        },
+
         tick: function (timestamp) {
             if (this.stats) {
                 this.stats.begin();
