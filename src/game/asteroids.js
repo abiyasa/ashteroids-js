@@ -49,38 +49,22 @@ define([
 
             var creator = new EntityCreator(this.engine, canvasContext);
 
-            this.engine.addSystem(
-                new GameManager(this.gameState, creator),
-                SystemPriorities.preUpdate
-           );
-            this.engine.addSystem(
-                new GameStateControlSystem(KeyPoll, this.gameState),
-                SystemPriorities.preUpdate
-           );
-            this.engine.addSystem(
-                new MotionControlSystem(KeyPoll),
-                SystemPriorities.update
-           );
-            this.engine.addSystem(
-                new GunControlSystem(KeyPoll, creator),
-                SystemPriorities.update
-           );
-            this.engine.addSystem(
-                new BulletAgeSystem(creator),
-                SystemPriorities.update
-           );
-            this.engine.addSystem(
-                new MovementSystem(this.gameState),
-                SystemPriorities.move
-           );
-            this.engine.addSystem(
-                new CollisionSystem(creator),
-                SystemPriorities.resolveCollisions
-           );
-            this.engine.addSystem(
-                new RenderSystem(canvasContext),
-                SystemPriorities.render
-           );
+            this.engine.addSystem(new GameManager(this.gameState, creator),
+                SystemPriorities.preUpdate);
+            this.engine.addSystem(new GameStateControlSystem(KeyPoll, this.gameState),
+                SystemPriorities.preUpdate);
+            this.engine.addSystem(new MotionControlSystem(KeyPoll),
+                SystemPriorities.update);
+            this.engine.addSystem(new GunControlSystem(KeyPoll, creator),
+                SystemPriorities.update);
+            this.engine.addSystem(new BulletAgeSystem(creator),
+                SystemPriorities.update);
+            this.engine.addSystem(new MovementSystem(this.gameState),
+                SystemPriorities.move);
+            this.engine.addSystem(new CollisionSystem(creator),
+                SystemPriorities.resolveCollisions);
+            this.engine.addSystem(new RenderSystem(canvasContext),
+                SystemPriorities.render);
             this.tickProvider = new TickProvider(stats);
         },
 
