@@ -16,7 +16,7 @@ define([
         },
 
         stop: function () {
-            window.cancelRequestAnimationFrame(this.request);
+            window.cancelAnimationFrame(this.request);
         },
 
         add: function (listener, context) {
