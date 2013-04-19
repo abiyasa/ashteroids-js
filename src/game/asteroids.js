@@ -7,6 +7,7 @@ define([
     'game/systems/movementsystem',
     'game/systems/collisionsystem',
     'game/systems/rendersystem',
+    'game/systems/GameStateControlSystem',
     'game/systems/systempriorities',
     'game/entitycreator',
     'ash',
@@ -21,6 +22,7 @@ define([
     MovementSystem,
     CollisionSystem,
     RenderSystem,
+    GameStateControlSystem,
     SystemPriorities,
     EntityCreator,
     Ash,
@@ -49,6 +51,10 @@ define([
 
             this.engine.addSystem(
                 new GameManager(this.gameState, creator),
+                SystemPriorities.preUpdate
+           );
+            this.engine.addSystem(
+                new GameStateControlSystem(KeyPoll, this.gameState),
                 SystemPriorities.preUpdate
            );
             this.engine.addSystem(
@@ -97,8 +103,10 @@ define([
 
         // checking game state and trigger events
         checkGameState: function () {
-            if (this.gameState.state === this.gameState.STATUS_GAME_OVER) {
+            if (this.gameState.status === GameState.prototype.STATUS_GAME_OVER) {
                 // TODO trigger game over
+                console.log('stopping the game since status=' + GameState.prototype.STATUS_GAME_OVER);
+                this.stop();
             }
         }
     });
