@@ -66,6 +66,9 @@ define([
             this.engine.addSystem(new RenderSystem(canvasContext),
                 SystemPriorities.render);
             this.tickProvider = new TickProvider(stats);
+
+            // some signals
+            this.gameStateChanged = new Ash.Signals.Signal();
         },
 
         start: function () {
@@ -88,9 +91,8 @@ define([
         // checking game state and trigger events
         checkGameState: function () {
             if (this.gameState.status === GameState.prototype.STATUS_GAME_OVER) {
-                // TODO trigger game over
-                console.log('stopping the game since status=' + GameState.prototype.STATUS_GAME_OVER);
-                this.stop();
+                // trigger game over
+                this.gameStateChanged.dispatch('gameOver');
             }
         }
     });
