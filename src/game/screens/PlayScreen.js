@@ -65,12 +65,23 @@ define([
         // starts the game. Make sure everything has inited & rendered
         startGame: function () {
             this.asteroids = new Asteroids(this.gameCanvas, this.stats);
+            this.asteroids.gameStateChanged.add(this.onGameStateChanged, this);
             this.asteroids.start();
         },
 
         // Stops & destroy the game
         stopGame: function () {
             this.asteroids.stop();
+        },
+
+        // handle game state changes
+        onGameStateChanged: function (newState) {
+            if (newState === 'gameOver') {
+                this.stopGame();
+
+                // back to main screen
+                this.trigger('changeScreen', 'main');
+            }
         }
     });
 
