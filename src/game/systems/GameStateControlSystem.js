@@ -32,10 +32,12 @@ define([
                 /*
                 var gameStateNode = this.nodeList.head;
                 if (gameStateNode) {
-                    gameStateNode.gameState = GameState.prototype.STATUS_GAME_OVER;
+                    gameStateNode.gameState = GameState.prototype.STATUS_GAME_PAUSE;
                 }
                 */
-                this.gameState.status = GameState.prototype.STATUS_GAME_OVER;
+
+                // TODO cannot pause when you're dead
+                this.gameState.status = GameState.prototype.STATUS_GAME_PAUSE;
             }
         }
     });

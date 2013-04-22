@@ -88,11 +88,31 @@ define([
             this.engine.removeAllEntities();
         },
 
+        // pause the game for temporary
+        pause: function () {
+            this.tickProvider.stop();
+        },
+
+        // un-pause the game after it's being paused
+        unpause: function () {
+            this.tickProvider.start();
+
+            // set game state to unpause
+            this.gameState.status = GameState.prototype.STATUS_GAME_PLAY;
+        },
+
         // checking game state and trigger events
         checkGameState: function () {
-            if (this.gameState.status === GameState.prototype.STATUS_GAME_OVER) {
+            switch (this.gameState.status) {
+            case GameState.prototype.STATUS_GAME_OVER:
                 // trigger game over
                 this.gameStateChanged.dispatch('gameOver');
+                break;
+
+            case GameState.prototype.STATUS_GAME_PAUSE:
+                this.gameStateBeforePause =
+                this.gameStateChanged.dispatch('gamePause');
+                break;
             }
         }
     });

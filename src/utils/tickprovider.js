@@ -5,6 +5,7 @@ define([
         previousTime: 0,
         ticked: new Ash.Signals.Signal(),
         request: null,
+        isTicking: false,
         stats: null,
 
         constructor: function (stats) {
@@ -12,10 +13,12 @@ define([
         },
 
         start: function () {
+            this.isTicking = true;
             this.request = window.requestAnimationFrame(this.tick.bind(this));
         },
 
         stop: function () {
+            this.isTicking = false;
             window.cancelAnimationFrame(this.request);
         },
 
@@ -40,8 +43,10 @@ define([
             var tmp = this.previousTime || timestamp;
             this.previousTime = timestamp;
             var delta = (timestamp - tmp) * 0.001;
-            this.ticked.dispatch(delta);
-            window.requestAnimationFrame(this.tick.bind(this));
+            if (this.isTicking) {
+                this.ticked.dispatch(delta);
+                window.requestAnimationFrame(this.tick.bind(this));
+            }
 
             if (this.stats) {
                 this.stats.end();

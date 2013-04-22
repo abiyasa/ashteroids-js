@@ -13,8 +13,8 @@ define([
 ], function ($, _, Backbone, screenTemplate, Fixes, KeyPoll, Asteroids, Stats) {
     'use strict';
 
-    var CANVAS_WIDTH = 800,
-        CANVAS_HEIGHT = 600;
+    var CANVAS_WIDTH = 600,
+        CANVAS_HEIGHT = 450;
 
     var PlayScreen = Backbone.View.extend({
         template: _.template(screenTemplate),
@@ -76,11 +76,20 @@ define([
 
         // handle game state changes
         onGameStateChanged: function (newState) {
-            if (newState === 'gameOver') {
+            switch (newState) {
+            case 'gameOver':
                 this.stopGame();
 
                 // back to main screen
                 this.trigger('changeScreen', 'main');
+                break;
+
+            case 'gamePause':
+                // TODO show pause menu
+                this.asteroids.pause();
+
+                // TODO activate
+                break;
             }
         }
     });
