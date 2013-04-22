@@ -1,0 +1,13 @@
+body {
+    margin: 20px;
+    font-family: "Verdana, Geneva, sans-serif";
+}
+
+#container {
+    width: 800px;
+    margin: 0px auto;
+}
+
+#screen {
+    position: relative;
+}
