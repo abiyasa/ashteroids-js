@@ -9,5 +9,21 @@ body {
 }
 
 #screen {
-    position: relative;
+    position: absolute;
+}
+
+.modals-container {
+    position: absolute;
+}
+
+.dialog {
+    background-color: #FFFFFF;
+}
+
+.game-container {
+    z-index: 100;
+}
+
+.modals-container {
+    z-index: 200;
 }

@@ -6,11 +6,12 @@ define([
     'underscore',
     'backbone',
     'text!templates/PlayScreen.html',
+    'text!templates/PauseDialog.html',
     'brejep/fillsnfixes',
     'utils/keypoll',
     'game/asteroids',
     'stats'
-], function ($, _, Backbone, screenTemplate, Fixes, KeyPoll, Asteroids, Stats) {
+], function ($, _, Backbone, screenTemplate, pauseDialogTemplate, Fixes, KeyPoll, Asteroids, Stats) {
     'use strict';
 
     var CANVAS_WIDTH = 600,
@@ -18,6 +19,7 @@ define([
 
     var PlayScreen = Backbone.View.extend({
         template: _.template(screenTemplate),
+        templatePauseDialog: _.template(pauseDialogTemplate),
 
         initialize: function () {
             // some polyfills and additions to base javascript classes
@@ -29,6 +31,11 @@ define([
             // init Stats
             this.stats = new Stats();
             this.stats.setMode(0); // 0: fps, 1: ms
+        },
+
+        events: {
+            'click #button-unpause': '_unpauseGame',
+            'click #button-quit': '_quitGame'
         },
 
         // create canvas element dynamically
@@ -67,6 +74,8 @@ define([
             this.asteroids = new Asteroids(this.gameCanvas, this.stats);
             this.asteroids.gameStateChanged.add(this.onGameStateChanged, this);
             this.asteroids.start();
+
+            this.isPaused = false;
         },
 
         // Stops & destroy the game
@@ -78,18 +87,46 @@ define([
         onGameStateChanged: function (newState) {
             switch (newState) {
             case 'gameOver':
-                this.stopGame();
-
-                // back to main screen
-                this.trigger('changeScreen', 'main');
+                this._quitGame();
                 break;
 
             case 'gamePause':
-                // TODO show pause menu
-                this.asteroids.pause();
-
-                // TODO activate
+                this._pauseGame();
                 break;
+            }
+        },
+
+        // internal function to quit the game
+        _quitGame: function () {
+            this.stopGame();
+
+            // back to main screen
+            this.trigger('changeScreen', 'main');
+        },
+
+        // internal function to pause the game
+        _pauseGame: function () {
+            if (!this.isPaused) {
+                this.isPaused = true;
+
+                // show pause menu
+                this.$('.modals-container').html(this.templatePauseDialog());
+
+                this.asteroids.pause();
+            }
+
+            // TODO activate listener for unpause
+        },
+
+        // internal function to unpause the game
+        _unpauseGame: function () {
+            if (this.isPaused) {
+                this.isPaused = false;
+
+                // remove pause dialog
+                this.$('.modals-container').empty();
+
+                this.asteroids.unpause();
             }
         }
     });
