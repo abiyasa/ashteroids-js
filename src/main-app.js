@@ -1,10 +1,12 @@
 require([
     'jquery',
+    'fillsnfixes',
+    'utils/keypoll',
     'utils/ScreenManager',
     'game/screens/IntroScreen',
     'game/screens/MainScreen',
     'game/screens/PlayScreen'
-], function($, ScreenManager, IntroScreen, MainScreen, PlayScreen) {
+], function($, Fixes, KeyPoll, ScreenManager, IntroScreen, MainScreen, PlayScreen) {
     'use strict';
 
     // for managing our screens
@@ -51,6 +53,12 @@ require([
         displayScreen(newScreen);
         newScreen.startGame();
     };
+
+    // some polyfills and additions to base javascript classes
+    Fixes.initialise();
+
+    // init keyboard poll
+    KeyPoll.initialise(window);
 
     // start!
     onChangeScreen('intro');

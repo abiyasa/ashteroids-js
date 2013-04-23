@@ -5,13 +5,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/PlayScreen.html',
-    'text!templates/PauseDialog.html',
-    'fillsnfixes',
-    'utils/keypoll',
     'game/asteroids',
-    'stats'
-], function ($, _, Backbone, screenTemplate, pauseDialogTemplate, Fixes, KeyPoll, Asteroids, Stats) {
+    'stats',
+    'text!templates/PlayScreen.html',
+    'text!templates/PauseDialog.html'
+], function ($, _, Backbone, Asteroids, Stats, screenTemplate, pauseDialogTemplate) {
     'use strict';
 
     var CANVAS_WIDTH = 400,
@@ -22,12 +20,6 @@ define([
         templatePauseDialog: _.template(pauseDialogTemplate),
 
         initialize: function () {
-            // some polyfills and additions to base javascript classes
-            Fixes.initialise();
-
-            // init keyboard poll
-            KeyPoll.initialise(window);
-
             // init Stats
             this.stats = new Stats();
             this.stats.setMode(0); // 0: fps, 1: ms
