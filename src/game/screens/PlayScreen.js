@@ -7,7 +7,7 @@ define([
     'backbone',
     'text!templates/PlayScreen.html',
     'text!templates/PauseDialog.html',
-    'brejep/fillsnfixes',
+    'fillsnfixes',
     'utils/keypoll',
     'game/asteroids',
     'stats'
