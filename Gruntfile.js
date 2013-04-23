@@ -65,14 +65,22 @@ module.exports = function (grunt) {
 
         // requirejs config
         requirejs: {
+            options: {
+                mainConfigFile: 'build.js'
+            },
             compile: {
                 options: {
-                    mainConfigFile: 'build.js'
+                    optimize: 'none',
+                    out: 'build/ashteroids.js'
                 }
             },
             minified: {
                 options: {
-                    mainConfigFile: 'build.min.js'
+                    optimize: 'uglify',
+                    paths: {
+                        jquery: 'lib/utils/loader.jquery'
+                    },
+                    out: 'build/ashteroids.min.js'
                 }
             }
         },
