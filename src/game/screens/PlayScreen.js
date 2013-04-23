@@ -14,8 +14,8 @@ define([
 ], function ($, _, Backbone, screenTemplate, pauseDialogTemplate, Fixes, KeyPoll, Asteroids, Stats) {
     'use strict';
 
-    var CANVAS_WIDTH = 600,
-        CANVAS_HEIGHT = 450;
+    var CANVAS_WIDTH = 400,
+        CANVAS_HEIGHT = 300;
 
     var PlayScreen = Backbone.View.extend({
         template: _.template(screenTemplate),
@@ -114,8 +114,6 @@ define([
 
                 this.asteroids.pause();
             }
-
-            // TODO activate listener for unpause
         },
 
         // internal function to unpause the game
