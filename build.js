@@ -10,7 +10,6 @@ requirejs.config({
     // specify custom module name paths
     paths: {
         // JavaScript folders.
-        brejep: 'lib/brejep',
         utils: 'src/utils',
         game: 'src/game',
         templates: 'templates',
@@ -21,6 +20,7 @@ requirejs.config({
         jquery: 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
         underscore: 'components/underscore/underscore',
         backbone: 'components/backbone/backbone',
+        fillsnfixes: 'lib/utils/fillsnfixes',
 
         // plugins
         text: 'components/requirejs-text/text'

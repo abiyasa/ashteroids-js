@@ -6,7 +6,6 @@ require.config({
 
     paths: {
         // JavaScript folders.
-        brejep: '../lib/brejep',
         utils: 'utils',
         game: 'game',
         templates: '../templates',
@@ -20,6 +19,7 @@ require.config({
         ],
         underscore: '../components/underscore/underscore',
         backbone: '../components/backbone/backbone',
+        fillsnfixes: '../lib/utils/fillsnfixes',
 
         // plugins
         text: '../components/requirejs-text/text'
