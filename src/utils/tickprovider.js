@@ -2,10 +2,9 @@ define([
     'ash'
 ], function (Ash) {
     var TickProvider = Ash.Class.extend({
-        previousTime: 0,
         ticked: new Ash.Signals.Signal(),
         request: null,
-        isTicking: false,
+        isRunning: false,
         stats: null,
 
         constructor: function (stats) {
@@ -13,12 +12,13 @@ define([
         },
 
         start: function () {
-            this.isTicking = true;
+            this.isRunning = true;
+            this.previousTime = 0;
             this.request = window.requestAnimationFrame(this.tick.bind(this));
         },
 
         stop: function () {
-            this.isTicking = false;
+            this.isRunning = false;
             window.cancelAnimationFrame(this.request);
         },
 
@@ -39,11 +39,11 @@ define([
                 this.stats.begin();
             }
 
-            timestamp = timestamp || Date.now();
-            var tmp = this.previousTime || timestamp;
-            this.previousTime = timestamp;
-            var delta = (timestamp - tmp) * 0.001;
-            if (this.isTicking) {
+            if (this.isRunning) {
+                var tmp = this.previousTime || timestamp;
+                var delta = (timestamp - tmp) * 0.001;
+                this.previousTime = timestamp;
+
                 this.ticked.dispatch(delta);
                 window.requestAnimationFrame(this.tick.bind(this));
             }
