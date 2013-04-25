@@ -13,10 +13,7 @@ require.config({
         // Libraries
         ash: '../lib/ash/ash',
         stats: '../components/stats.js/src/Stats',
-        jquery: [
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
-            'components/jquery/jquery'
-        ],
+        jquery: '../lib/utils/loader.jquery',
         underscore: '../components/underscore/underscore',
         backbone: '../components/backbone/backbone',
         fillsnfixes: '../lib/utils/fillsnfixes',

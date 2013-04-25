@@ -6,8 +6,9 @@
     "dependencies": {
         "backbone": "latests",
         "underscore": "latests",
-        "jquery": "latest",
+        "jquery": "~2.0.0",
         "requirejs-text": "latest",
-        "stats.js": "latest"
+        "stats.js": "latest",
+        "flat-ui": "latest"
     }
 }

@@ -77,9 +77,6 @@ module.exports = function (grunt) {
             minified: {
                 options: {
                     optimize: 'uglify',
-                    paths: {
-                        jquery: 'lib/utils/loader.jquery'
-                    },
                     out: 'build/ashteroids.min.js'
                 }
             }
