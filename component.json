@@ -8,7 +8,6 @@
         "underscore": "latests",
         "jquery": "~2.0.0",
         "requirejs-text": "latest",
-        "stats.js": "latest",
-        "flat-ui": "latest"
+        "stats.js": "latest"
     }
 }
