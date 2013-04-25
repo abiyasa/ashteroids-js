@@ -1,29 +1,46 @@
-body {
-    margin: 20px;
-    font-family: "Verdana, Geneva, sans-serif";
-}
-
-#container {
+.page {
     width: 800px;
-    margin: 0px auto;
+    height: 600px;
+    margin: 20px auto;
 }
 
 #screen {
-    position: absolute;
+    background-color: #ECF0F1;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
 }
 
-.modals-container {
-    position: absolute;
+.logo-container {
+    width: 100%;
+    height: 300px;
+}
+
+.logo-text {
+    text-align: center;
+    padding: 100px;
+}
+
+.logo-intro {
+    text-align: center;
+    padding: 200px;
 }
 
 .dialog {
     background-color: #FFFFFF;
 }
 
-.game-container {
+.container-game {
+    position: absolute;
     z-index: 100;
 }
 
-.modals-container {
+.container-modals {
+    position: absolute;
     z-index: 200;
+}
+
+.container-instruction {
+    padding-top: 400px;
 }

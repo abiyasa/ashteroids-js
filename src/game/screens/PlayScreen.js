@@ -46,7 +46,7 @@ define([
 
             // init & show canvas
             this.gameCanvas = this._createCanvas();
-            var $gamewrapper = this.$('.game-container').append(this.gameCanvas);
+            var $gamewrapper = this.$('.container-game').append(this.gameCanvas);
 
             // render stats
             var $stat = $(this.stats.domElement);
@@ -102,7 +102,7 @@ define([
                 this.isPaused = true;
 
                 // show pause menu
-                this.$('.modals-container').html(this.templatePauseDialog());
+                this.$('.container-modals').html(this.templatePauseDialog());
 
                 this.asteroids.pause();
             }
@@ -114,7 +114,7 @@ define([
                 this.isPaused = false;
 
                 // remove pause dialog
-                this.$('.modals-container').empty();
+                this.$('.container-modals').empty();
 
                 this.asteroids.unpause();
             }
