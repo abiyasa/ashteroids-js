@@ -12,8 +12,8 @@ define([
 ], function ($, _, Backbone, Asteroids, Stats, screenTemplate, pauseDialogTemplate) {
     'use strict';
 
-    var CANVAS_WIDTH = 400,
-        CANVAS_HEIGHT = 300;
+    var CANVAS_WIDTH = 640,
+        CANVAS_HEIGHT = 480;
 
     var PlayScreen = Backbone.View.extend({
         template: _.template(screenTemplate),
@@ -42,7 +42,14 @@ define([
         },
 
         render: function () {
-            $(this.el).html(this.template());
+            this.$el.html(this.template());
+
+            // dynamically adjust screen container
+            this.$el.css({
+                margin: '0px auto',
+                width: CANVAS_WIDTH + 'px',
+                height: '100%'
+            });
 
             // init & show canvas
             this.gameCanvas = this._createCanvas();
