@@ -16,7 +16,8 @@ define([
         },
 
         initialize: function () {
-            // TODO start timer here...
+            // start time
+            setTimeout(this.notifyStart.bind(this), 1000);
         },
 
         render: function () {
