@@ -51,6 +51,14 @@ define([
                 height: '100%'
             });
 
+            // dynamically set width to the containers inside the screen
+            var that = this;
+            [ '.container-modals' , '.container-game', 'container-instruction' ].forEach(function (element) {
+                that.$('.container-modals').css({
+                    width: CANVAS_WIDTH + 'px'
+                });
+            });
+
             // init & show canvas
             this.gameCanvas = this._createCanvas();
             var $gamewrapper = this.$('.container-game').append(this.gameCanvas);

@@ -28,7 +28,12 @@
 }
 
 .dialog {
-    background-color: #FFFFFF;
+    position: absolute;
+    background-color: rgba(255,255,255,0.9);
+    padding: 10px 0 10px;
+}
+.dialog-pause {
+    width: 100%;
 }
 
 .container-game {
@@ -38,6 +43,7 @@
 
 .container-modals {
     position: absolute;
+    width: 100%;
     z-index: 200;
 }
 
