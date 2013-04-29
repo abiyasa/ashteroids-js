@@ -5,8 +5,10 @@ require([
     'utils/ScreenManager',
     'game/screens/IntroScreen',
     'game/screens/MainScreen',
-    'game/screens/PlayScreen'
-], function($, Fixes, KeyPoll, ScreenManager, IntroScreen, MainScreen, PlayScreen) {
+    'game/screens/SettingsScreen',
+    'game/screens/PlayScreen',
+], function($, Fixes, KeyPoll, ScreenManager, IntroScreen,
+    MainScreen, SettingsScreen, PlayScreen) {
     'use strict';
 
     // for managing our screens
@@ -27,6 +29,10 @@ require([
             showMainScreen();
             break;
 
+        case 'settings':
+            showSettingsScreen();
+            break;
+
         case 'play':
             showPlayScreen();
             break;
@@ -45,6 +51,11 @@ require([
 
     var showMainScreen = function () {
         var newScreen = new MainScreen();
+        displayScreen(newScreen);
+    };
+
+    var showSettingsScreen = function () {
+        var newScreen = new SettingsScreen();
         displayScreen(newScreen);
     };
 
