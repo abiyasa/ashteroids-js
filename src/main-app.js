@@ -6,7 +6,7 @@ require([
     'game/screens/IntroScreen',
     'game/screens/MainScreen',
     'game/screens/SettingsScreen',
-    'game/screens/PlayScreen',
+    'game/screens/PlayScreen'
 ], function($, Fixes, KeyPoll, ScreenManager, IntroScreen,
     MainScreen, SettingsScreen, PlayScreen) {
     'use strict';
