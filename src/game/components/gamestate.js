@@ -16,8 +16,7 @@ define(['ash'], function (Ash) {
             this.height = height;
             this.status = this.STATUS_GAME_INIT;
 
-            //this.renderer = renderer || this.RENDERER_CANVAS;
-            this.renderer = renderer || this.RENDERER_CREATE_JS;
+            this.renderer = renderer || this.RENDERER_CANVAS;
         },
 
         // reset game state before a game starts

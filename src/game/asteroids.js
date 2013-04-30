@@ -48,6 +48,7 @@ define([
             this.engine = new Ash.Engine();
 
             this.gameState = new GameState(this.width, this.height);
+            this.gameState.renderer = this.gameState.RENDERER_CREATE_JS;
 
             var creator = new EntityCreator(this.engine, canvasContext, this.gameState);
 
