@@ -9,10 +9,12 @@ define([
     'game/components/gun',
     'game/components/guncontrols',
     'game/components/display',
+    'game/components/CreateJSDisplay',
     'game/graphics/asteroidview',
     'game/graphics/spaceshipview',
     'game/graphics/bulletview',
-    'utils/keyboard'
+    'utils/keyboard',
+    'easel'
 ], function (
     Ash,
     Asteroid,
@@ -24,10 +26,12 @@ define([
     Gun,
     GunControls,
     Display,
+    CreateJSDisplay,
     AsteroidView,
     SpaceshipView,
     BulletView,
-    Keyboard
+    Keyboard,
+    createjs
 ) {
 
     var EntityCreator = Ash.Class.extend({
@@ -56,9 +60,34 @@ define([
                         Math.random() * 2 - 1,
                         0
                    )
-               )
-                .add(new Display(new AsteroidView(radius, this.graphics)));
+                );
+
+            // create view based on game renderer
+            var displayComponent;
+            switch (this.gameState.renderer) {
+            case this.gameState.RENDERER_CANVAS:
+                displayComponent = new Display(new AsteroidView(radius, this.graphics));
+                break;
+
+            case this.gameState.RENDERER_CREATE_JS:
+                // TODO replace with real view
+                var g = new createjs.Graphics();
+                g.setStrokeStyle(1);
+                g.beginStroke(createjs.Graphics.getRGB(255, 255, 255));
+                g.beginFill(createjs.Graphics.getRGB(255, 128, 128));
+                g.drawPolyStar(0, 0, radius, 5, 0.6, -90);
+                var shape = new createjs.Shape(g);
+                shape.x = 100;
+                shape.y = 100;
+                displayComponent = new CreateJSDisplay(shape);
+                break;
+            }
+            if (displayComponent) {
+                asteroid.add(displayComponent);
+            }
+
             this.game.addEntity(asteroid);
+
             return asteroid;
         },
 
