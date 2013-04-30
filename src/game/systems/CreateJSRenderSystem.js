@@ -2,7 +2,7 @@
  * Renderer system using CreateJS/EaselJS
  */
 define([
-    'ash', 'game/nodes/render', 'easel'
+    'ash', 'game/nodes/CreateJSRender', 'easel'
 ], function (Ash, RenderNode, createjs) {
     var RenderSystem = Ash.System.extend({
         nodes: null,
@@ -27,7 +27,6 @@ define([
             return this;
         },
 
-        /*
         addToEngine: function (engine) {
             this.nodes = engine.getNodeList(RenderNode);
             for(var node = this.nodes.head; node; node = node.next) {
@@ -40,40 +39,29 @@ define([
         removeFromEngine: function (engine) {
             this.nodes = null;
         },
-        */
 
         addToDisplay: function (node) {
-            // Intentionally left blank
+            this.stage.addChild(node.display.displayObject);
         },
 
         removeFromDisplay: function (node) {
-            // Intentionally left blank
-        }
+            this.stage.removeChild(node.display.displayObject);
+        },
 
-        /*
         update: function (time) {
-            var node,
-                position,
-                display,
-                graphic;
-
-            this.context.save();
-            this.context.translate(0,0);
-            this.context.rotate(0);
-            this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+            var node, position, display;
 
             for (node = this.nodes.head; node; node = node.next) {
                 display = node.display;
-                graphic = display.graphic;
+                graphic = display.displayObject;
                 position = node.position;
                 graphic.x = position.position.x;
                 graphic.y = position.position.y;
                 graphic.rotation = position.rotation;
-                graphic.draw();
             }
-            this.context.restore();
+
+            this.stage.update();
         }
-        */
     });
 
     return RenderSystem;
