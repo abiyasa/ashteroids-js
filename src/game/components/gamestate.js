@@ -5,13 +5,19 @@ define(['ash'], function (Ash) {
         STATUS_GAME_PAUSE: 20,
         STATUS_GAME_OVER: 30,
 
-        constructor: function (width, height) {
+        RENDERER_CANVAS: 0,
+        RENDERER_CREATE_JS: 10,
+
+        constructor: function (width, height, renderer) {
             this.lives = 0;
             this.level = 0;
             this.points = 0;
             this.width = width;
             this.height = height;
             this.status = this.STATUS_GAME_INIT;
+
+            //this.renderer = renderer || this.RENDERER_CANVAS;
+            this.renderer = renderer || this.RENDERER_CREATE_JS;
         },
 
         // reset game state before a game starts

@@ -7,6 +7,7 @@ define([
     'game/systems/movementsystem',
     'game/systems/collisionsystem',
     'game/systems/rendersystem',
+    'game/systems/CreateJSRenderSystem',
     'game/systems/GameStateControlSystem',
     'game/systems/systempriorities',
     'game/entitycreator',
@@ -22,6 +23,7 @@ define([
     MovementSystem,
     CollisionSystem,
     RenderSystem,
+    CreateJSRenderSystem,
     GameStateControlSystem,
     SystemPriorities,
     EntityCreator,
@@ -47,7 +49,7 @@ define([
 
             this.gameState = new GameState(this.width, this.height);
 
-            var creator = new EntityCreator(this.engine, canvasContext);
+            var creator = new EntityCreator(this.engine, canvasContext, this.gameState);
 
             this.engine.addSystem(new GameManager(this.gameState, creator),
                 SystemPriorities.preUpdate);
@@ -63,8 +65,22 @@ define([
                 SystemPriorities.move);
             this.engine.addSystem(new CollisionSystem(creator),
                 SystemPriorities.resolveCollisions);
-            this.engine.addSystem(new RenderSystem(canvasContext),
-                SystemPriorities.render);
+
+            // handle multi renderer
+            var rendererSystem;
+            switch (this.gameState.renderer) {
+            case GameState.prototype.RENDERER_CREATE_JS:
+                rendererSystem = new CreateJSRenderSystem(canvas);
+                break;
+
+            case GameState.prototype.RENDERER_CANVAS:
+                rendererSystem = new RenderSystem(canvasContext);
+                break;
+            }
+            if (rendererSystem) {
+                this.engine.addSystem(rendererSystem, SystemPriorities.render);
+            }
+
             this.tickProvider = new TickProvider(stats);
 
             // some signals

@@ -33,10 +33,12 @@ define([
     var EntityCreator = Ash.Class.extend({
         game: null,
         graphics: null,
+        gameState: null,
 
-        constructor: function (game, graphics) {
+        constructor: function (game, graphics, gameState) {
             this.game = game;
             this.graphics = graphics;
+            this.gameState = gameState;
         },
 
         destroyEntity: function(entity) {
