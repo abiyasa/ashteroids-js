@@ -21,6 +21,7 @@ requirejs.config({
         underscore: 'components/underscore/underscore',
         backbone: 'components/backbone/backbone',
         fillsnfixes: 'lib/utils/fillsnfixes',
+        easel: 'components/easeljs/lib/easeljs-0.6.0.min',
 
         // plugins
         text: 'components/requirejs-text/text'
@@ -40,6 +41,9 @@ requirejs.config({
         backbone: {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
+        },
+        easel: {
+            exports: 'createjs'
         }
     },
 
