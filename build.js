@@ -10,9 +10,6 @@ requirejs.config({
     // specify custom module name paths
     paths: {
         // JavaScript folders.
-        utils: 'utils',
-        game: 'game',
-        core: 'core',
         templates: '../templates',
 
         // Libraries
