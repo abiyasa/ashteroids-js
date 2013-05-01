@@ -16,8 +16,8 @@ define([
     'game/graphics/asteroidview',
     'game/graphics/spaceshipview',
     'game/graphics/bulletview',
-    'utils/keyboard',
-    'easel'
+    'graphics/CreateJSAssetsManager',
+    'utils/keyboard'
 ], function (
     Ash,
     Asteroid,
@@ -33,6 +33,7 @@ define([
     AsteroidView,
     SpaceshipView,
     BulletView,
+    CreateJSAssetsManager,
     Keyboard,
     createjs
 ) {
@@ -71,14 +72,7 @@ define([
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
-                // TODO replace with real view
-                var g = new createjs.Graphics();
-                g.setStrokeStyle(1);
-                g.beginStroke(createjs.Graphics.getRGB(0xFFFFFF, 1.0));
-                g.beginFill(createjs.Graphics.getRGB(0xFF8080, 1.0));
-                g.drawPolyStar(0, 0, radius, 5, 0.6, -90);
-                var shape = new createjs.Shape(g);
-                displayComponent = new CreateJSDisplay(shape);
+                displayComponent = new CreateJSDisplay(CreateJSAssetsManager.prototype.createAsteroidsShape(radius));
                 break;
             }
             if (displayComponent) {
@@ -109,18 +103,7 @@ define([
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
-                // TODO replace with real view
-                var g = new createjs.Graphics();
-                g.setStrokeStyle(2);
-                g.beginStroke(createjs.Graphics.getRGB(0xFFFFFF, 1.0));
-                g.beginFill(createjs.Graphics.getRGB(0x80FFFF, 1.0));
-                g.moveTo(8, 0);
-                g.lineTo(-7, 7);
-                g.lineTo(-4, 0);
-                g.lineTo(-7, -7);
-                g.closePath();
-                var shape = new createjs.Shape(g);
-                displayComponent = new CreateJSDisplay(shape);
+                displayComponent = new CreateJSDisplay(CreateJSAssetsManager.prototype.createSpaceShipShape());
                 break;
             }
             if (displayComponent) {
@@ -152,12 +135,7 @@ define([
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
-                // TODO replace with real view
-                var g = new createjs.Graphics();
-                g.beginFill(createjs.Graphics.getRGB(0xFFFFFF, 1.0));
-                g.arc(0, 0, 2, 0, Math.PI * 2, false);
-                var shape = new createjs.Shape(g);
-                displayComponent = new CreateJSDisplay(shape);
+                displayComponent = new CreateJSDisplay(CreateJSAssetsManager.prototype.createBulletShape());
                 break;
             }
             if (displayComponent) {
