@@ -31,6 +31,8 @@ define([
 
             if (buttonId === 'button-ok') {
                 // TODO update game settings
+                var renderMode = this.$('#select-render-mode').val();
+                console.log('render mode=' + renderMode);
             }
 
             // trigger event for changing screen
