@@ -51,6 +51,22 @@ h2 {
 h3 {
   color: #95A5A6;
 }
+select {
+  font-family: "Lato";
+  background-color: #FFFFFF;
+
+  font-family: "Lato", sans-serif;
+  color: #34495E;
+  font-size: 17px;
+
+  display: inline-block;
+  margin: 0 5px;
+  border-radius: 6px;
+  padding: 6px;
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+}
 .container {
   margin: 5px auto;
   width: 100%;
