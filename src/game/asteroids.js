@@ -10,7 +10,7 @@ define([
     'game/systems/CreateJSRenderSystem',
     'game/systems/GameStateControlSystem',
     'game/systems/systempriorities',
-    'game/entitycreator',
+    'core/EntityCreator',
     'ash',
     'utils/tickprovider',
     'utils/keypoll'

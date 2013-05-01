@@ -8,6 +8,7 @@ require.config({
         // JavaScript folders.
         utils: 'utils',
         game: 'game',
+        core: 'core',
         templates: '../templates',
 
         // Libraries

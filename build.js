@@ -12,6 +12,7 @@ requirejs.config({
         // JavaScript folders.
         utils: 'src/utils',
         game: 'src/game',
+        core: 'src/core',
         templates: 'templates',
 
         // Libraries
