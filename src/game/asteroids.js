@@ -7,7 +7,7 @@ define([
     'game/systems/movementsystem',
     'game/systems/collisionsystem',
     'game/systems/rendersystem',
-    'game/systems/CreateJSRenderSystem',
+    'systems/CreateJSRenderSystem',
     'game/systems/GameStateControlSystem',
     'game/systems/systempriorities',
     'core/EntityCreator',
