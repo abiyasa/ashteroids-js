@@ -71,12 +71,14 @@ module.exports = function (grunt) {
             compile: {
                 options: {
                     optimize: 'none',
+                    deps: [],
                     out: 'build/ashteroids.js'
                 }
             },
             minified: {
                 options: {
                     optimize: 'uglify',
+                    deps: [],
                     out: 'build/ashteroids.min.js'
                 }
             }

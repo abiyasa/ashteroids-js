@@ -57,6 +57,9 @@ requirejs.config({
     // it pulls in the rest of the dependencies automatically.
     include: [ 'main-app' ],
 
+    // Initialize the application with the main application file.
+    deps: ['main-app'],
+
     // build file destination, relative to the build file itself
     out: '../build/ashteroids.js'
 });
