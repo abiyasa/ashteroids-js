@@ -56,7 +56,9 @@ define([
                 position = node.position;
                 displayObject.x = position.position.x;
                 displayObject.y = position.position.y;
-                displayObject.rotation = position.rotation;
+
+                // createJS uses degree
+                displayObject.rotation = position.rotation * 180 / Math.PI;
             }
 
             this.stage.update();
