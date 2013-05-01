@@ -68,7 +68,7 @@ define([
          */
         createBulletShape: function (options) {
             var g = new createjs.Graphics();
-            g.beginFill(createjs.Graphics.getRGB(0xC0392B, 1.0));
+            g.beginFill(createjs.Graphics.getRGB(0xFFFFFF, 1.0));
             g.arc(0, 0, 2, 0, Math.PI * 2, false);
             g.endFill();
 
