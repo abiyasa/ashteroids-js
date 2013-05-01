@@ -49,15 +49,14 @@ define([
         },
 
         update: function (time) {
-            var node, position, display;
+            var node, position, displayObject;
 
             for (node = this.nodes.head; node; node = node.next) {
-                display = node.display;
-                graphic = display.displayObject;
+                displayObject = node.display.displayObject;
                 position = node.position;
-                graphic.x = position.position.x;
-                graphic.y = position.position.y;
-                graphic.rotation = position.rotation;
+                displayObject.x = position.position.x;
+                displayObject.y = position.position.y;
+                displayObject.rotation = position.rotation;
             }
 
             this.stage.update();
