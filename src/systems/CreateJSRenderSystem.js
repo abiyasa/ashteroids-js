@@ -2,7 +2,7 @@
  * Renderer system using CreateJS/EaselJS
  */
 define([
-    'ash', 'game/nodes/CreateJSRender', 'easel'
+    'ash', 'nodes/CreateJSRender', 'easel'
 ], function (Ash, RenderNode, createjs) {
     var RenderSystem = Ash.System.extend({
         nodes: null,
