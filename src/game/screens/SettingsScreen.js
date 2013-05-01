@@ -26,7 +26,7 @@ define([
             return this;
         },
 
-        notifySaveSettings: function () {
+        notifySaveSettings: function (event) {
             var buttonId = event.currentTarget.id;
 
             if (buttonId === 'button-ok') {
