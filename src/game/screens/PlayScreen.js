@@ -36,7 +36,7 @@ define([
             canvasElem.setAttribute('id', 'game_stage');
             canvasElem.setAttribute('width', CANVAS_WIDTH);
             canvasElem.setAttribute('height', CANVAS_HEIGHT);
-            canvasElem.style.backgroundColor = '#000';
+            canvasElem.setAttribute('class', 'canvas-game');
 
             return canvasElem;
         },
