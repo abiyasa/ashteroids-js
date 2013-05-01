@@ -127,7 +127,6 @@ define([
                 break;
 
             case GameState.prototype.STATUS_GAME_PAUSE:
-                this.gameStateBeforePause =
                 this.gameStateChanged.dispatch('gamePause');
                 break;
             }
