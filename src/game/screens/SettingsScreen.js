@@ -17,12 +17,17 @@ define([
             'click #button-cancel': 'notifySaveSettings'
         },
 
-        initialize: function () {
-            // TODO load game settings
+        initialize: function (config) {
+            this.config = config || {};
         },
 
         render: function () {
             $(this.el).html(this.template());
+
+            // get & display the render mode selection
+            this.$renderModeSelection = this.$('#select-render-mode');
+            this.$renderModeSelection.val(this.config.renderMode || 'canvas');
+
             return this;
         },
 
@@ -30,9 +35,8 @@ define([
             var buttonId = event.currentTarget.id;
 
             if (buttonId === 'button-ok') {
-                // TODO update game settings
-                var renderMode = this.$('#select-render-mode').val();
-                console.log('render mode=' + renderMode);
+                // update game settings
+                this.config.renderMode = this.$renderModeSelection.val() || 'canvas';
             }
 
             // trigger event for changing screen

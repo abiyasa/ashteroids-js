@@ -19,7 +19,10 @@ define([
         template: _.template(screenTemplate),
         templatePauseDialog: _.template(pauseDialogTemplate),
 
-        initialize: function () {
+        initialize: function (config) {
+            // TODO process the game config
+            console.log('render mode=' + config.renderMode);
+
             // init Stats
             this.stats = new Stats();
             this.stats.setMode(0); // 0: fps, 1: ms

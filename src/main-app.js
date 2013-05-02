@@ -16,6 +16,13 @@ require([
         el: $('#screen')
     });
 
+    // default game configuration
+    // TODO should be read & return by init screen
+    var gameConfig = {
+        renderMode: 'canvas',
+        playSound: true
+    };
+
     // init & diplays an allocated screen
     var _showScreen = function (theScreen) {
         theScreen.on('changeScreen', onChangeScreen);
@@ -33,15 +40,15 @@ require([
             break;
 
         case 'main':
-            newScreen = new MainScreen();
+            newScreen = new MainScreen(gameConfig);
             break;
 
         case 'settings':
-            newScreen = new SettingsScreen();
+            newScreen = new SettingsScreen(gameConfig);
             break;
 
         case 'play':
-            newScreen = new PlayScreen();
+            newScreen = new PlayScreen(gameConfig);
             break;
         }
 

@@ -17,8 +17,8 @@ define([
             'click #button-settings': 'notifyScreenChange'
         },
 
-        initialize: function () {
-            // TODO start timer here...
+        initialize: function (config) {
+            // nothing to do yet
         },
 
         render: function () {
