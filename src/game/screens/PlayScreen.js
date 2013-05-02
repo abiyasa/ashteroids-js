@@ -20,8 +20,8 @@ define([
         templatePauseDialog: _.template(pauseDialogTemplate),
 
         initialize: function (config) {
-            // TODO process the game config
-            console.log('render mode=' + config.renderMode);
+            // process the game config
+            this.gameConfig = config || { };
 
             // init Stats
             this.stats = new Stats();
@@ -91,7 +91,7 @@ define([
 
         // starts the game. Make sure everything has inited & rendered
         startGame: function () {
-            this.asteroids = new Asteroids(this.gameCanvas, this.stats);
+            this.asteroids = new Asteroids(this.gameCanvas, this.stats, this.gameConfig);
             this.asteroids.gameStateChanged.add(this.onGameStateChanged, this);
             this.asteroids.start();
 

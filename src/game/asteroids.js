@@ -39,7 +39,7 @@ define([
         gameState: null,
         tickProvider: null,
 
-        constructor: function (canvas, stats) {
+        constructor: function (canvas, stats, gameConfig) {
             var canvasContext = canvas.getContext('2d');
 
             this.width = canvas.width;
@@ -48,7 +48,7 @@ define([
             this.engine = new Ash.Engine();
 
             this.gameState = new GameState(this.width, this.height);
-            this.gameState.renderer = this.gameState.RENDERER_CREATE_JS;
+            this._processGameConfig(gameConfig);
 
             var creator = new EntityCreator(this.engine, canvasContext, this.gameState);
 
@@ -86,6 +86,27 @@ define([
 
             // some signals
             this.gameStateChanged = new Ash.Signals.Signal();
+        },
+
+        // process the game config & assign them to the game state
+        _processGameConfig: function (gameConfig) {
+            var renderMode = gameConfig.renderMode || 'canvas';
+            switch (renderMode) {
+            case 'createjs':
+                renderMode = this.gameState.RENDERER_CREATE_JS;
+                break;
+
+            case 'createjs-bitmap':
+                // TODO support this render mode
+                renderMode = this.gameState.RENDERER_CREATE_JS;
+                break;
+
+            case 'canvas':
+                renderMode = this.gameState.RENDERER_CANVAS;
+                break;
+            }
+
+            this.gameState.renderer = renderMode;
         },
 
         start: function () {
