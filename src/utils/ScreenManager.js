@@ -19,6 +19,7 @@ define([
                 $(this.el).append(theScreen.render().el);
 
                 this.currentScreen = theScreen;
+                this.currentScreen.trigger('screenAdded');
             }
 
             return this;
@@ -31,6 +32,7 @@ define([
             $(this.el).empty();
 
             if (this.currentScreen) {
+                this.currentScreen.trigger('screenRemoved');
                 this.currentScreen.off();
                 this.currentScreen = undefined;
             }

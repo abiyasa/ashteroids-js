@@ -16,53 +16,38 @@ require([
         el: $('#screen')
     });
 
-    // the screen event, which will trigger screen changes
-    var onChangeScreen = function (screenName) {
-        console.log('screen event happens. detail=', screenName);
-
-        switch (screenName) {
-        case 'intro':
-            showIntroScreen();
-            break;
-
-        case 'main':
-            showMainScreen();
-            break;
-
-        case 'settings':
-            showSettingsScreen();
-            break;
-
-        case 'play':
-            showPlayScreen();
-            break;
-        }
-    };
-
     // init & diplays an allocated screen
-    var displayScreen = function (theScreen) {
+    var _showScreen = function (theScreen) {
         theScreen.on('changeScreen', onChangeScreen);
         screenManager.showScreen(theScreen);
     };
 
-    var showIntroScreen = function () {
-        displayScreen(new IntroScreen());
-    };
+    // the screen event, which will trigger screen changes
+    var onChangeScreen = function (screenName) {
+        console.log('screen event happens. detail=', screenName);
 
-    var showMainScreen = function () {
-        var newScreen = new MainScreen();
-        displayScreen(newScreen);
-    };
+        var newScreen;
+        switch (screenName) {
+        case 'intro':
+            newScreen = new IntroScreen();
+            break;
 
-    var showSettingsScreen = function () {
-        var newScreen = new SettingsScreen();
-        displayScreen(newScreen);
-    };
+        case 'main':
+            newScreen = new MainScreen();
+            break;
 
-    var showPlayScreen = function () {
-        var newScreen = new PlayScreen();
-        displayScreen(newScreen);
-        newScreen.startGame();
+        case 'settings':
+            newScreen = new SettingsScreen();
+            break;
+
+        case 'play':
+            newScreen = new PlayScreen();
+            break;
+        }
+
+        if (newScreen) {
+            _showScreen(newScreen);
+        }
     };
 
     // some polyfills and additions to base javascript classes

@@ -23,6 +23,16 @@ define([
             // init Stats
             this.stats = new Stats();
             this.stats.setMode(0); // 0: fps, 1: ms
+
+            this.on('screenAdded', function () {
+                // will automatically start the game
+                this.startGame();
+            });
+
+            this.on('screenRemoved', function () {
+                // will automatically stop the game
+                this.stopGame();
+            });
         },
 
         events: {
