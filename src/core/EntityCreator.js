@@ -131,7 +131,7 @@ define([
             var displayComponent;
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_CANVAS:
-                displayComponent = new BulletView(this.graphics);
+                displayComponent = new Display(new BulletView(this.graphics));
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
