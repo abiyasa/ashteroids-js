@@ -3,10 +3,10 @@ require([
     'fillsnfixes',
     'utils/keypoll',
     'utils/ScreenManager',
-    'game/screens/IntroScreen',
-    'game/screens/MainScreen',
-    'game/screens/SettingsScreen',
-    'game/screens/PlayScreen'
+    'screens/IntroScreen',
+    'screens/MainScreen',
+    'screens/SettingsScreen',
+    'screens/PlayScreen'
 ], function($, Fixes, KeyPoll, ScreenManager, IntroScreen,
     MainScreen, SettingsScreen, PlayScreen) {
     'use strict';
