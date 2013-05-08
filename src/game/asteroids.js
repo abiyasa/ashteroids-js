@@ -8,6 +8,7 @@ define([
     'game/systems/collisionsystem',
     'game/systems/rendersystem',
     'systems/CreateJSRenderSystem',
+    'systems/ThreeRenderSystem',
     'game/systems/GameStateControlSystem',
     'game/systems/systempriorities',
     'core/EntityCreator',
@@ -24,6 +25,7 @@ define([
     CollisionSystem,
     RenderSystem,
     CreateJSRenderSystem,
+    ThreeRenderSystem,
     GameStateControlSystem,
     SystemPriorities,
     EntityCreator,
@@ -40,8 +42,6 @@ define([
         tickProvider: null,
 
         constructor: function (canvas, stats, gameConfig) {
-            var canvasContext = canvas.getContext('2d');
-
             this.width = canvas.width;
             this.height = canvas.height;
 
@@ -50,7 +50,7 @@ define([
             this.gameState = new GameState(this.width, this.height);
             this._processGameConfig(gameConfig);
 
-            var creator = new EntityCreator(this.engine, canvasContext, this.gameState);
+            var creator = new EntityCreator(this.engine, canvas, this.gameState);
 
             this.engine.addSystem(new GameManager(this.gameState, creator),
                 SystemPriorities.preUpdate);
@@ -75,7 +75,11 @@ define([
                 break;
 
             case GameState.prototype.RENDERER_CANVAS:
-                rendererSystem = new RenderSystem(canvasContext);
+                rendererSystem = new RenderSystem(creator.canvasContext);
+                break;
+
+            case GameState.prototype.RENDERER_THREE_JS:
+                rendererSystem = new ThreeRenderSystem(canvas);
                 break;
             }
             if (rendererSystem) {
@@ -99,6 +103,10 @@ define([
             case 'createjs-bitmap':
                 // TODO support this render mode
                 renderMode = this.gameState.RENDERER_CREATE_JS;
+                break;
+
+            case 'threejs':
+                renderMode = this.gameState.RENDERER_THREE_JS;
                 break;
 
             case 'canvas':

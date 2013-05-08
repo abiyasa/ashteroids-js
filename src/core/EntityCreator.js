@@ -40,13 +40,21 @@ define([
 
     var EntityCreator = Ash.Class.extend({
         game: null,
-        graphics: null,
         gameState: null,
+        canvas: null,
+        canvasContext: null,
 
-        constructor: function (game, graphics, gameState) {
+        constructor: function (game, canvas, gameState) {
             this.game = game;
-            this.graphics = graphics;
+            this.canvas = canvas;
             this.gameState = gameState;
+
+            // get canvas context if it's 2D
+            switch (this.gameState.renderer) {
+            case this.gameState.RENDERER_CANVAS:
+                this.canvasContext = canvas.getContext('2d');
+                break;
+            }
         },
 
         destroyEntity: function(entity) {
@@ -68,7 +76,7 @@ define([
             var displayComponent;
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_CANVAS:
-                displayComponent = new Display(new AsteroidView(radius, this.graphics));
+                displayComponent = new Display(new AsteroidView(radius, this.canvasContext));
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
@@ -99,7 +107,7 @@ define([
             var displayComponent;
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_CANVAS:
-                displayComponent = new Display(new SpaceshipView(this.graphics));
+                displayComponent = new Display(new SpaceshipView(this.canvasContext));
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
@@ -131,7 +139,7 @@ define([
             var displayComponent;
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_CANVAS:
-                displayComponent = new Display(new BulletView(this.graphics));
+                displayComponent = new Display(new BulletView(this.canvasContext));
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
