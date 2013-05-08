@@ -74,7 +74,8 @@ define([
 
             // init & show canvas
             this.gameCanvas = this._createCanvas();
-            var $gamewrapper = this.$('.container-game').append(this.gameCanvas);
+            var $gamewrapper = this.$('.container-game');
+            $gamewrapper.append(this.gameCanvas);
 
             // render stats
             var $stat = $(this.stats.domElement);
