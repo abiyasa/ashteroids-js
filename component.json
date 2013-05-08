@@ -9,6 +9,7 @@
         "jquery": "~2.0.0",
         "requirejs-text": "latest",
         "stats.js": "latest",
-        "easeljs": "git://github.com/CreateJS/EaselJS.git"
+        "easeljs": "git://github.com/CreateJS/EaselJS.git",
+        "threejs": "latest"
     }
 }

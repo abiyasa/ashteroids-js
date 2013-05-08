@@ -20,6 +20,7 @@ requirejs.config({
         backbone: '../components/backbone/backbone',
         fillsnfixes: '../lib/utils/fillsnfixes',
         easel: '../components/easeljs/lib/easeljs-0.6.0.min',
+        three: '../components/threejs/build/three',
 
         // plugins
         text: '../components/requirejs-text/text'
@@ -42,6 +43,9 @@ requirejs.config({
         },
         easel: {
             exports: 'createjs'
+        },
+        three: {
+            exports: 'THREE'
         }
     },
 
