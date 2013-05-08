@@ -52,10 +52,10 @@ requirejs.config({
 
     // files to include along with almond.  only lib/skeleton.js is defined, as
     // it pulls in the rest of the dependencies automatically.
-    include: [ 'main-app' ],
+    include: [ 'MainApp' ],
 
     // Initialize the application with the main application file.
-    deps: ['main-app'],
+    deps: ['MainApp'],
 
     // build file destination, relative to the build file itself
     out: '../build/ashteroids.js'
