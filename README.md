@@ -2,11 +2,29 @@
 
 A simple asteroids game using [Ash.js](https://github.com/brejep/ash-js), a JavaScript port of [Ash Framework](http://ashframework.org)
 
+This example game is to show Ash Framework enables you to implement a game with multiple renderes (Canvas, CreateJS, Three.js)
+using the same game logic. This is due to clear separation between the game systems (physics, graphics, game logic) and the game data,
+which is encouraged by Ash Framework.
+
+Just check out [Ash Framework](http://ashframework.org/) website for introduction, tutorials, and more info ;-)
+
+## Libraries
+
+This game supports multiple renderers using:
+
+* Canvas
+* CreateJS
+* Three.js (wip)
+* Pixi.js (planned)
+* *more*
+
+This game also uses [Backbone.js](http://backbonejs.org), JavaScript templating system, and CSS for the screens and game UI.
+
 ## Running
-Just open `ashteroids.html` from your browser. This will run the final (built & minified) version of the game.
+Just open `ashteroids.html` from your browser. This will run the built & minified version of the game.
 
 If you modify or customize the code, you have to re-build the sources in order to see the effect.
-Or you can run the game in development version (see the [topic below](#running-the-development-version).
+Or you can run the game in development version (see the [topic below](#running-the-development-version)).
 
 ## Building/compiling
 This project uses [RequireJS](http://requirejs.org/) for AMD, [Grunt](http://www.gruntjs.com) for the building process, and
