@@ -12,7 +12,7 @@ define([
     'game/components/gun',
     'game/components/guncontrols',
     'game/components/display',
-    'components/CreateJSDisplay',
+    'components/Display',
     'game/graphics/asteroidview',
     'game/graphics/spaceshipview',
     'game/graphics/bulletview',
