@@ -6,9 +6,10 @@ require([
     'screens/IntroScreen',
     'screens/MainScreen',
     'screens/SettingsScreen',
-    'screens/PlayScreen'
+    'screens/PlayScreen',
+    'screens/AboutScreen'
 ], function($, Fixes, KeyPoll, ScreenManager, IntroScreen,
-    MainScreen, SettingsScreen, PlayScreen) {
+    MainScreen, SettingsScreen, PlayScreen, AboutScreen) {
     'use strict';
 
     // for managing our screens
@@ -45,6 +46,10 @@ require([
 
         case 'settings':
             newScreen = new SettingsScreen(gameConfig);
+            break;
+
+        case 'about':
+            newScreen = new AboutScreen(gameConfig);
             break;
 
         case 'play':
