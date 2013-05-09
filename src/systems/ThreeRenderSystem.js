@@ -1,10 +1,13 @@
 /**
  * Renderer system using Three.js
+ * Also manage the camera & scene lights
  */
 define([
-    'ash', 'three'
-], function (Ash, THREE) {
+    'ash', 'three', 'nodes/RenderNode'
+], function (Ash, THREE, RenderNode) {
     var RenderSystem = Ash.System.extend({
+        nodes: null,
+        scene: null,
 
         constructor: function (canvas) {
             var viewportWidth = canvas.width;
@@ -13,11 +16,19 @@ define([
             var scene = this.scene = new THREE.Scene();
 
             // setup camera
-            var camera = this.camera = new THREE.PerspectiveCamera(75, viewportWidth / viewportHeight, 1, 10000);
-            camera.position.z = 600;
+            var camera = this.camera = new THREE.PerspectiveCamera(75, viewportWidth / viewportHeight, 10, 1000);
+            camera.position.z = 300;
+            camera.position.x = viewportWidth / 2;
+            camera.position.y = (viewportHeight / 2) - 100;
+            camera.lookAt(new THREE.Vector3(viewportWidth / 2, (viewportHeight / 2) - 40, 0));
             scene.add(camera);
 
-            this.setupDummyStuff();
+            // create lights
+            var light = new THREE.DirectionalLight(0xFFFFFF);
+            light.position.set(0, 0, 1).normalize();
+            this.scene.add(light);
+
+            this.createBGPlane(viewportWidth, viewportHeight);
 
             // prepare renderer
             var renderer = this.renderer = new THREE.WebGLRenderer({ canvas: canvas });
@@ -26,33 +37,55 @@ define([
             return this;
         },
 
-        // setup dummy stuff just to know if this renderer is working
-        setupDummyStuff: function () {
-            // create sphere & material
-            var geometry = new THREE.SphereGeometry(200, 16, 16);
+        // create plane for BG
+        createBGPlane: function (width, height) {
+            var geometry = new THREE.PlaneGeometry(width, height, 4, 4);
             var material = new THREE.MeshLambertMaterial({
-                color: 0x009ee1,
-                emissive: 0x009ee1,
-                ambient: 0x009ee1,
-                wireframe: false
+                color: 0x34495E
             });
 
             // create mesh
-            var mesh = this.mesh = new THREE.Mesh(geometry, material);
-            this.scene.add(mesh);
+            var planeMesh = new THREE.Mesh(geometry, material);
+            planeMesh.position.x = width / 2;
+            planeMesh.position.y = height / 2;
+            planeMesh.position.z = -50;
 
-            // create lights
-            var light = new THREE.PointLight(0xFFFFFF);
-            light.position.x = 0;
-            light.position.y = 100;
-            light.position.z = 300;
-            this.scene.add(light);
+            this.scene.add(planeMesh);
+        },
+
+        addToEngine: function (engine) {
+            this.nodes = engine.getNodeList(RenderNode);
+            for(var node = this.nodes.head; node; node = node.next) {
+                this.addToDisplay(node);
+            }
+            this.nodes.nodeAdded.add(this.addToDisplay, this);
+            this.nodes.nodeRemoved.add(this.removeFromDisplay, this);
+        },
+
+        removeFromEngine: function (engine) {
+            this.nodes = null;
+        },
+
+        addToDisplay: function (node) {
+            this.scene.add(node.display.displayObject);
+            node.display.displayObject.position.z = 0;
+        },
+
+        removeFromDisplay: function (node) {
+            this.scene.remove(node.display.displayObject);
         },
 
         update: function (time) {
-            // rotate dummy mesh
-            this.mesh.rotation.x += 0.01;
-            this.mesh.rotation.y += 0.02;
+            var node, position, displayObject;
+
+            for (node = this.nodes.head; node; node = node.next) {
+                displayObject = node.display.displayObject;
+                position = node.position;
+                displayObject.position.x = position.position.x;
+                displayObject.position.y = position.position.y;
+
+                displayObject.rotation.z = position.rotation;
+            }
 
             this.renderer.render(this.scene, this.camera);
         }

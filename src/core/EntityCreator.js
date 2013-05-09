@@ -16,6 +16,7 @@ define([
     'game/graphics/spaceshipview',
     'game/graphics/bulletview',
     'graphics/CreateJSAssetsManager',
+    'graphics/ThreeJSAssetsManager',
     'utils/keyboard'
 ], function (
     Ash,
@@ -32,6 +33,7 @@ define([
     SpaceshipView,
     BulletView,
     CreateJSAssetsManager,
+    ThreeJSAssetsManager,
     Keyboard,
     createjs
 ) {
@@ -80,6 +82,10 @@ define([
             case this.gameState.RENDERER_CREATE_JS:
                 displayComponent = CreateJSAssetsManager.prototype.createAsteroidsShape(radius);
                 break;
+
+            case this.gameState.RENDERER_THREE_JS:
+                displayComponent = ThreeJSAssetsManager.prototype.createAsteroidsShape(radius);
+                break;
             }
             if (displayComponent) {
                 asteroid.add(new Display(displayComponent));
@@ -110,6 +116,10 @@ define([
 
             case this.gameState.RENDERER_CREATE_JS:
                 displayComponent = CreateJSAssetsManager.prototype.createSpaceShipShape();
+                break;
+
+            case this.gameState.RENDERER_THREE_JS:
+                displayComponent = ThreeJSAssetsManager.prototype.createSpaceShipShape();
                 break;
             }
             if (displayComponent) {
@@ -142,6 +152,10 @@ define([
 
             case this.gameState.RENDERER_CREATE_JS:
                 displayComponent = CreateJSAssetsManager.prototype.createBulletShape();
+                break;
+
+            case this.gameState.RENDERER_THREE_JS:
+                displayComponent = ThreeJSAssetsManager.prototype.createBulletShape();
                 break;
             }
             if (displayComponent) {
