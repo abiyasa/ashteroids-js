@@ -1,5 +1,5 @@
 /**
- * Node for rendering CreateJSDisplay component
+ * Node for rendering Display component
  */
 define([
     'ash', 'game/components/position', 'components/Display'
