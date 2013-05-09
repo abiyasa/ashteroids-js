@@ -1,5 +1,5 @@
 define([
-    'ash', 'game/nodes/render'
+    'ash', 'nodes/RenderNode'
 ], function (Ash, RenderNode) {
     var RenderSystem = Ash.System.extend({
         context: null,
@@ -44,7 +44,7 @@ define([
 
             for (node = this.nodes.head; node; node = node.next) {
                 display = node.display;
-                graphic = display.graphic;
+                graphic = display.displayObject;
                 position = node.position;
                 graphic.x = position.position.x;
                 graphic.y = position.position.y;

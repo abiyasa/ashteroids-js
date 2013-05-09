@@ -11,7 +11,6 @@ define([
     'game/components/motioncontrols',
     'game/components/gun',
     'game/components/guncontrols',
-    'game/components/display',
     'components/Display',
     'game/graphics/asteroidview',
     'game/graphics/spaceshipview',
@@ -29,7 +28,6 @@ define([
     Gun,
     GunControls,
     Display,
-    CreateJSDisplay,
     AsteroidView,
     SpaceshipView,
     BulletView,
@@ -76,15 +74,15 @@ define([
             var displayComponent;
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_CANVAS:
-                displayComponent = new Display(new AsteroidView(radius, this.canvasContext));
+                displayComponent = new AsteroidView(radius, this.canvasContext);
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
-                displayComponent = new CreateJSDisplay(CreateJSAssetsManager.prototype.createAsteroidsShape(radius));
+                displayComponent = CreateJSAssetsManager.prototype.createAsteroidsShape(radius);
                 break;
             }
             if (displayComponent) {
-                asteroid.add(displayComponent);
+                asteroid.add(new Display(displayComponent));
             }
 
             this.game.addEntity(asteroid);
@@ -107,15 +105,15 @@ define([
             var displayComponent;
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_CANVAS:
-                displayComponent = new Display(new SpaceshipView(this.canvasContext));
+                displayComponent = new SpaceshipView(this.canvasContext);
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
-                displayComponent = new CreateJSDisplay(CreateJSAssetsManager.prototype.createSpaceShipShape());
+                displayComponent = CreateJSAssetsManager.prototype.createSpaceShipShape();
                 break;
             }
             if (displayComponent) {
-                spaceship.add(displayComponent);
+                spaceship.add(new Display(displayComponent));
             }
 
             this.game.addEntity(spaceship);
@@ -139,15 +137,15 @@ define([
             var displayComponent;
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_CANVAS:
-                displayComponent = new Display(new BulletView(this.canvasContext));
+                displayComponent = new BulletView(this.canvasContext);
                 break;
 
             case this.gameState.RENDERER_CREATE_JS:
-                displayComponent = new CreateJSDisplay(CreateJSAssetsManager.prototype.createBulletShape());
+                displayComponent = CreateJSAssetsManager.prototype.createBulletShape();
                 break;
             }
             if (displayComponent) {
-                bullet.add(displayComponent);
+                bullet.add(new Display(displayComponent));
             }
 
             this.game.addEntity(bullet);
