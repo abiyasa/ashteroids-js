@@ -1,3 +1,6 @@
+/**
+ * Renderer system using HTML5 Canvas
+ */
 define([
     'ash', 'nodes/RenderNode'
 ], function (Ash, RenderNode) {
@@ -32,10 +35,7 @@ define([
         },
 
         update: function (time) {
-            var node,
-                position,
-                display,
-                graphic;
+            var node, position, display, graphic;
 
             this.context.save();
             this.context.translate(0,0);
@@ -46,9 +46,11 @@ define([
                 display = node.display;
                 graphic = display.displayObject;
                 position = node.position;
+
                 graphic.x = position.position.x;
                 graphic.y = position.position.y;
                 graphic.rotation = position.rotation;
+
                 graphic.draw();
             }
             this.context.restore();

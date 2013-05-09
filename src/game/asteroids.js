@@ -6,7 +6,7 @@ define([
     'game/systems/bulletagesystem',
     'game/systems/movementsystem',
     'game/systems/collisionsystem',
-    'game/systems/rendersystem',
+    'systems/CanvasRenderSystem',
     'systems/CreateJSRenderSystem',
     'systems/ThreeRenderSystem',
     'game/systems/GameStateControlSystem',
@@ -23,7 +23,7 @@ define([
     BulletAgeSystem,
     MovementSystem,
     CollisionSystem,
-    RenderSystem,
+    CanvasRenderSystem,
     CreateJSRenderSystem,
     ThreeRenderSystem,
     GameStateControlSystem,
@@ -75,7 +75,7 @@ define([
                 break;
 
             case GameState.prototype.RENDERER_CANVAS:
-                rendererSystem = new RenderSystem(creator.canvasContext);
+                rendererSystem = new CanvasRenderSystem(creator.canvasContext);
                 break;
 
             case GameState.prototype.RENDERER_THREE_JS:
