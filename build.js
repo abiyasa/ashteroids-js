@@ -19,7 +19,8 @@ requirejs.config({
         underscore: '../components/underscore/underscore',
         backbone: '../components/backbone/backbone',
         fillsnfixes: '../lib/utils/fillsnfixes',
-        easel: '../components/easeljs/lib/easeljs-0.6.0.min',
+        easel: '../components/easeljs/lib/easeljs-0.6.1.min',
+        preload : '../components/preloadjs/lib/preloadjs-0.3.1.min',
         three: '../components/threejs/build/three',
 
         // plugins
@@ -42,6 +43,9 @@ requirejs.config({
             exports: 'Backbone'
         },
         easel: {
+            exports: 'createjs'
+        },
+        preload: {
             exports: 'createjs'
         },
         three: {
