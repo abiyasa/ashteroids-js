@@ -8,8 +8,10 @@ define([
     'game/asteroids',
     'stats',
     'text!templates/PlayScreen.html',
-    'text!templates/PauseDialog.html'
-], function ($, _, Backbone, Asteroids, Stats, screenTemplate, pauseDialogTemplate) {
+    'text!templates/PauseDialog.html',
+    'text!templates/LoadingDialog.html'
+], function ($, _, Backbone, Asteroids, Stats, screenTemplate,
+    pauseDialogTemplate, loadingDialogTemplate) {
     'use strict';
 
     var CANVAS_WIDTH = 640,
@@ -18,6 +20,7 @@ define([
     var PlayScreen = Backbone.View.extend({
         template: _.template(screenTemplate),
         templatePauseDialog: _.template(pauseDialogTemplate),
+        templateLoadingDialog: _.template(loadingDialogTemplate),
 
         initialize: function (config) {
             // process the game config
@@ -93,10 +96,18 @@ define([
         // starts the game. Make sure everything has inited & rendered
         startGame: function () {
             this.asteroids = new Asteroids(this.gameCanvas, this.stats, this.gameConfig);
-            this.asteroids.gameStateChanged.add(this.onGameStateChanged, this);
-            this.asteroids.start();
-
             this.isPaused = false;
+
+            // load game assets
+            this._showDialog(this.templateLoadingDialog());
+            var that = this;
+            this.asteroids.loadAssets(function () {
+                // the game is ready to be started
+                that._removeDialog();
+
+                that.asteroids.gameStateChanged.add(that.onGameStateChanged, that);
+                that.asteroids.start();
+            });
         },
 
         // Stops & destroy the game
@@ -130,10 +141,10 @@ define([
             if (!this.isPaused) {
                 this.isPaused = true;
 
-                // show pause menu
-                this.$('.container-modals').html(this.templatePauseDialog());
-
                 this.asteroids.pause();
+
+                // show pause menu
+                this._showDialog(this.templatePauseDialog());
             }
         },
 
@@ -143,10 +154,20 @@ define([
                 this.isPaused = false;
 
                 // remove pause dialog
-                this.$('.container-modals').empty();
+                this._removeDialog();
 
                 this.asteroids.unpause();
             }
+        },
+
+        // Show pause or loading dialog
+        _showDialog: function (dialog) {
+            this.$('.container-modals').html(dialog);
+        },
+
+        // remove any dialog
+        _removeDialog: function () {
+            this.$('.container-modals').empty();
         }
     });
 

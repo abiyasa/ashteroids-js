@@ -7,6 +7,7 @@ define(['ash'], function (Ash) {
 
         RENDERER_CANVAS: 0,
         RENDERER_CREATE_JS: 10,
+        RENDERER_CREATE_JS_BITMAP: 20,
         RENDERER_THREE_JS: 30,
 
         constructor: function (width, height, renderer) {

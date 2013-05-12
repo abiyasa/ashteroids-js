@@ -50,7 +50,7 @@ define([
             this.gameState = new GameState(this.width, this.height);
             this._processGameConfig(gameConfig);
 
-            var creator = new EntityCreator(this.engine, canvas, this.gameState);
+            var creator = this.entityCreator = new EntityCreator(this.engine, canvas, this.gameState);
 
             this.engine.addSystem(new GameManager(this.gameState, creator),
                 SystemPriorities.preUpdate);
@@ -101,8 +101,7 @@ define([
                 break;
 
             case 'createjs-bitmap':
-                // TODO support this render mode
-                renderMode = this.gameState.RENDERER_CREATE_JS;
+                renderMode = this.gameState.RENDERER_CREATE_JS_BITMAP;
                 break;
 
             case 'threejs':
@@ -117,6 +116,18 @@ define([
             this.gameState.renderer = renderMode;
         },
 
+        /**
+        * Load all game assets before starting the game.
+        * Call this before calling start()
+        *
+        * @param callback callback function when loading is done
+        */
+        loadAssets: function(callback) {
+            var that = this;
+            this.entityCreator.loadAssets(callback);
+        },
+
+        // start the game
         start: function () {
             this.gameState.reset(0, 3, 0);
 

@@ -62,6 +62,27 @@ define([
         },
 
         /**
+        * Loads all assets based on the current game renderer
+        *
+        * @callback Callback function called when all assets have been loaded
+        */
+        loadAssets: function (callback) {
+            switch (this.gameState.renderer) {
+            //case this.gameState.RENDERER_CREATE_JS_BITMAP:
+                // TODO load assets using preload js
+                //break;
+
+            default:
+                // no assets to load, delay 0.5s to show loading screen
+                var that = this;
+                window.setTimeout(function () {
+                    callback();
+                }, 1000);
+                break;
+            }
+        },
+
+        /**
          * Creates asteroids using the given position & data
          */
         createAsteroid: function(radius, x, y) {
