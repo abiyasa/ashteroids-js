@@ -70,15 +70,16 @@ define([
             // handle multi renderer
             var rendererSystem;
             switch (this.gameState.renderer) {
-            case GameState.prototype.RENDERER_CREATE_JS:
+            case this.gameState.RENDERER_CREATE_JS:
+            case this.gameState.RENDERER_CREATE_JS_BITMAP:
                 rendererSystem = new CreateJSRenderSystem(canvas);
                 break;
 
-            case GameState.prototype.RENDERER_CANVAS:
+            case this.gameState.RENDERER_CANVAS:
                 rendererSystem = new CanvasRenderSystem(creator.canvasContext);
                 break;
 
-            case GameState.prototype.RENDERER_THREE_JS:
+            case this.gameState.RENDERER_THREE_JS:
                 rendererSystem = new ThreeRenderSystem(canvas);
                 break;
             }

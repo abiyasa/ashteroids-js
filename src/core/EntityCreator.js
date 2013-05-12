@@ -68,17 +68,25 @@ define([
         */
         loadAssets: function (callback) {
             switch (this.gameState.renderer) {
-            //case this.gameState.RENDERER_CREATE_JS_BITMAP:
-                // TODO load assets using preload js
-                //break;
-
-            default:
-                // no assets to load, delay 0.5s to show loading screen
-                var that = this;
-                window.setTimeout(function () {
-                    callback();
-                }, 1000);
+            case this.gameState.RENDERER_CREATE_JS_BITMAP:
+            case this.gameState.RENDERER_CREATE_JS:
+                this.assetManager = new CreateJSAssetsManager({
+                    useBitmapAssets: this.gameState.renderer === this.gameState.RENDERER_CREATE_JS_BITMAP
+                });
                 break;
+
+            case this.gameState.RENDERER_THREE_JS:
+                this.assetManager = new ThreeJSAssetsManager();
+                break;
+            }
+
+            if (this.assetManager) {
+                this.assetManager.loadAssets(callback);
+            } else {
+                // TODO callback with error
+                if (callback) {
+                    callback();
+                }
             }
         },
 
@@ -100,12 +108,8 @@ define([
                 displayComponent = new AsteroidView(radius, this.canvasContext);
                 break;
 
-            case this.gameState.RENDERER_CREATE_JS:
-                displayComponent = CreateJSAssetsManager.prototype.createAsteroidsShape(radius);
-                break;
-
-            case this.gameState.RENDERER_THREE_JS:
-                displayComponent = ThreeJSAssetsManager.prototype.createAsteroidsShape(radius);
+            default:
+                displayComponent = this.assetManager.createAsteroidsShape(radius);
                 break;
             }
             if (displayComponent) {
@@ -135,12 +139,8 @@ define([
                 displayComponent = new SpaceshipView(this.canvasContext);
                 break;
 
-            case this.gameState.RENDERER_CREATE_JS:
-                displayComponent = CreateJSAssetsManager.prototype.createSpaceShipShape();
-                break;
-
-            case this.gameState.RENDERER_THREE_JS:
-                displayComponent = ThreeJSAssetsManager.prototype.createSpaceShipShape();
+            default:
+                displayComponent = this.assetManager.createSpaceShipShape();
                 break;
             }
             if (displayComponent) {
@@ -171,12 +171,8 @@ define([
                 displayComponent = new BulletView(this.canvasContext);
                 break;
 
-            case this.gameState.RENDERER_CREATE_JS:
-                displayComponent = CreateJSAssetsManager.prototype.createBulletShape();
-                break;
-
-            case this.gameState.RENDERER_THREE_JS:
-                displayComponent = ThreeJSAssetsManager.prototype.createBulletShape();
+            default:
+                displayComponent = this.assetManager.createBulletShape();
                 break;
             }
             if (displayComponent) {

@@ -12,6 +12,18 @@ define([
         },
 
         /**
+        * Loads all assets
+        */
+        loadAssets: function (callback) {
+            // no assets to load yet, just delay 0.5s
+            window.setTimeout(function () {
+                if (callback) {
+                    callback();
+                }
+            }, 1000);
+        },
+
+        /**
          * Creates an asteroid shapes object
          */
         createAsteroidsShape: function (radius, options) {
