@@ -131,7 +131,6 @@ define([
             if (this.useBitmapAssets && this.spriteSheet) {
                 var bullet = new createjs.BitmapAnimation(this.spriteSheet);
                 bullet.gotoAndStop(2);
-                bullet.rotation = 90;
 
                 var container = new createjs.Container();
                 container.addChild(bullet);

@@ -17,10 +17,11 @@ define(function () {
     api.draw = function() {
         var graphic = this.graphic;
         graphic.save();
+        graphic.translate(this.x, this.y);
         graphic.rotate( this.rotation );
         graphic.beginPath();
         graphic.fillStyle = '#FFFFFF';
-        graphic.arc( this.x, this.y, 2, 0, Math.PI*2, false );
+        graphic.arc(0, 0, 2, 0, Math.PI*2, false );
         graphic.fill();
         graphic.restore();
     };
