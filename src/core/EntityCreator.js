@@ -128,9 +128,24 @@ define([
                 .add(new Spaceship())
                 .add(new Position(x, y, 1, 6))
                 .add(new Motion(0, 0, 0, 15))
-                .add(new MotionControls(Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, 100, 3))
                 .add(new Gun(8, 0, 0.3, 2))
                 .add(new GunControls(Keyboard.Z));
+
+            // create view based on game renderer
+            var motionControl;
+            switch (this.gameState.renderer) {
+            case this.gameState.RENDERER_THREE_JS:
+                // invert controller for 3D mode
+                motionControl = new MotionControls(Keyboard.RIGHT, Keyboard.LEFT, Keyboard.UP, 100, 3);
+                break;
+
+            default:
+                motionControl = new MotionControls(Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, 100, 3);
+                break;
+            }
+            if (motionControl) {
+                spaceship.add(motionControl);
+            }
 
             // create view based on game renderer
             var displayComponent;
