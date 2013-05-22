@@ -20,7 +20,8 @@ requirejs.config({
         backbone: '../components/backbone/backbone',
         fillsnfixes: '../lib/utils/fillsnfixes',
         easel: '../components/easeljs/lib/easeljs-0.6.1.min',
-        preload : '../components/preloadjs/lib/preloadjs-0.3.1.min',
+        preload: '../components/preloadjs/lib/preloadjs-0.3.1.min',
+        sound: '../components/soundjs/lib/soundjs-0.4.1.min',
         three: '../components/threejs/build/three',
 
         // plugins
@@ -46,6 +47,9 @@ requirejs.config({
             exports: 'createjs'
         },
         preload: {
+            exports: 'createjs'
+        },
+        sound: {
             exports: 'createjs'
         },
         three: {

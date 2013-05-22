@@ -11,6 +11,7 @@
         "stats.js": "latest",
         "easeljs": "git://github.com/CreateJS/EaselJS.git",
         "preloadjs": "git://github.com/CreateJS/PreloadJS.git",
+        "soundjs": "git://github.com/CreateJS/SoundJS.git",
         "threejs": "latest"
     }
 }
