@@ -52,7 +52,9 @@ define([
                     }
                 });
 
-                preload.loadFile({id: 'spritesheet', src: 'assets/ashteroids.png' });
+                preload.loadManifest([
+                    { id: 'spritesheet', src: 'assets/ashteroids.png' }
+                ]);
             }
         },
 
