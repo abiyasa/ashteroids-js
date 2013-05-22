@@ -34,12 +34,7 @@ define([
                         asteroid.position.collisionRadius) {
 
                         this.creator.destroyEntity(bullet.entity);
-                        if (asteroid.position.collisionRadius > 10) {
-                            this.creator.createAsteroid(asteroid.position.collisionRadius - 10,
-                                asteroid.position.position.x + Math.random() * 10 - 5,
-                                asteroid.position.position.y + Math.random() * 10 - 5);
-                        }
-                        this.creator.destroyEntity(asteroid.entity);
+                        this.creator.destroyAsteroid(asteroid.entity);
                         break;
                     }
                 }

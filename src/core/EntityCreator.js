@@ -17,7 +17,9 @@ define([
     'game/graphics/bulletview',
     'graphics/CreateJSAssetsManager',
     'graphics/ThreeJSAssetsManager',
-    'utils/keyboard'
+    'utils/keyboard',
+    'preload',
+    'sound'
 ], function (
     Ash,
     Asteroid,
@@ -80,14 +82,46 @@ define([
                 break;
             }
 
+            // load sound after load graphics assets
+            var that = this;
             if (this.assetManager) {
-                this.assetManager.loadAssets(callback);
+                this.assetManager.loadAssets(function () {
+                    that._loadSounds(callback);
+                });
             } else {
-                // TODO callback with error
+                this._loadSounds(callback);
+            }
+        },
+
+        // load sound assets
+        _loadSounds: function (callback) {
+            var preload = new createjs.LoadQueue();
+            preload.installPlugin(createjs.Sound);
+            preload.addEventListener('complete', function (event) {
                 if (callback) {
                     callback();
                 }
-            }
+            });
+
+            var basePath = 'assets/sounds/';
+            preload.loadManifest([
+                {
+                    id: 'sound-pew',
+                    src: basePath + 'laser.mp3' + '|' + basePath + 'laser.ogg'
+                },
+                {
+                    id: 'sound-thrust',
+                    src: basePath + 'thruster.mp3' + '|' + basePath + 'thruster.ogg'
+                },
+                {
+                    id: 'sound-start',
+                    src: basePath + 'levelstart.mp3' + '|' + basePath + 'levelstart.ogg'
+                },
+                {
+                    id: 'sound-explosion',
+                    src: basePath + 'explosion.mp3' + '|' + basePath + 'explosion.ogg'
+                }
+            ]);
         },
 
         /**
@@ -117,6 +151,7 @@ define([
             }
 
             this.game.addEntity(asteroid);
+
             return asteroid;
         },
 
@@ -163,6 +198,9 @@ define([
             }
 
             this.game.addEntity(spaceship);
+
+            createjs.Sound.play('sound-start');
+
             return spaceship;
         },
 
@@ -196,7 +234,28 @@ define([
             }
 
             this.game.addEntity(bullet);
+
+            createjs.Sound.play('sound-pew');
+
             return bullet;
+        },
+
+        /**
+        * Destroys an asteroid. Also remove the entity from the game
+        * and may add new & smaller asteroids
+        */
+        destroyAsteroid: function (asteroidEntity) {
+            var position = asteroidEntity.get(Position);
+            if (position && (position.collisionRadius > 10)) {
+                // create a smaller asteroids
+                this.createAsteroid(position.collisionRadius - 10,
+                    position.position.x + Math.random() * 10 - 5,
+                    position.position.y + Math.random() * 10 - 5);
+            }
+
+            this.destroyEntity(asteroidEntity);
+
+            createjs.Sound.play('sound-explosion');
         }
     });
 
