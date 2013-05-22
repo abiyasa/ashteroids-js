@@ -84,6 +84,10 @@ These are the list of other grunt commands you can use:
 * `grunt requirejs:compile` : build the non-minified version
 * `grunt requirejs:minified` : build the minified version
 
+## Assets
+Sounds assets are borrowed from https://github.com/JulianG/HTML5-Asteroids
+by [Julian Garamendy](http://tubamuga.com/demos/julian/)
+
 ## License
 MIT License
 
