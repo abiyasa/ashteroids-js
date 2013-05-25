@@ -1,3 +1,6 @@
+/**
+* Component for storing current game states
+*/
 define(['ash'], function (Ash) {
     var GameState = Ash.Class.extend({
         STATUS_GAME_INIT: 0,

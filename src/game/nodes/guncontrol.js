@@ -1,5 +1,5 @@
 define([
-    'ash', 'game/components/guncontrols', 'game/components/gun', 'game/components/position'
+    'ash', 'components/GunControl', 'components/Gun', 'game/components/position'
 ], function (Ash, GunControls, Gun, Position) {
     var GunControl = Ash.Node.extend({
         control: null,

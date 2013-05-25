@@ -1,6 +1,6 @@
 define([
-    'ash', 'game/components/motioncontrols', 'game/components/position',
-    'game/components/motion'
+    'ash', 'components/MotionControl',
+    'game/components/position', 'components/Motion'
 ], function (Ash, MotionControls, Position, Motion) {
     var MotionControl = Ash.Node.extend({
         control: null,

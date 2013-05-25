@@ -2,7 +2,7 @@
  * Node for game state
  */
 define([
-    'ash', 'game/components/gamestate'
+    'ash', 'components/GameState'
 ], function (Ash, GameState) {
     var GameStateNode = Ash.Node.extend({
         gameState: null,

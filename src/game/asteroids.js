@@ -1,5 +1,5 @@
 define([
-    'game/components/gamestate',
+    'components/GameState',
     'game/systems/gamemanager',
     'game/systems/motioncontrolsystem',
     'game/systems/guncontrolsystem',

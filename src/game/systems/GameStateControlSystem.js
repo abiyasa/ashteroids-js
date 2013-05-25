@@ -5,7 +5,7 @@
 define([
     'ash',
     'game/nodes/GameState',
-    'game/components/gamestate',
+    'components/GameState',
     'utils/keyboard'
 ], function (Ash, GameStateNode, GameState, Keyboard) {
     var GameStateControlSystem = Ash.System.extend({
