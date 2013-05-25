@@ -1,5 +1,5 @@
 define([
-    'ash', 'game/components/spaceship', 'game/components/position'
+    'ash', 'components/SpaceShip', 'game/components/position'
 ], function (Ash, Spaceship, Position) {
     var SpaceshipCollision = Ash.Node.extend({
         spaceship: null,

@@ -3,9 +3,9 @@
  */
 define([
     'ash',
-    'game/components/asteroid',
-    'game/components/spaceship',
-    'game/components/bullet',
+    'components/Asteroid',
+    'components/SpaceShip',
+    'components/Bullet',
     'game/components/position',
     'game/components/motion',
     'game/components/motioncontrols',

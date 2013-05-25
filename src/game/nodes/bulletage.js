@@ -1,5 +1,5 @@
 define([
-    'ash', 'game/components/bullet'
+    'ash', 'components/Bullet'
 ], function(Ash, Bullet ) {
     var BulletAge = Ash.Node.extend({
         bullet: null,
