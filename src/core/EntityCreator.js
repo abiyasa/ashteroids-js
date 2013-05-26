@@ -12,9 +12,7 @@ define([
     'components/Gun',
     'components/GunControl',
     'components/Display',
-    'game/graphics/asteroidview',
-    'game/graphics/spaceshipview',
-    'game/graphics/bulletview',
+    'graphics/CanvasAssetsManager',
     'graphics/CreateJSAssetsManager',
     'graphics/ThreeJSAssetsManager',
     'utils/keyboard',
@@ -31,9 +29,7 @@ define([
     Gun,
     GunControls,
     Display,
-    AsteroidView,
-    SpaceshipView,
-    BulletView,
+    CanvasAssetsManager,
     CreateJSAssetsManager,
     ThreeJSAssetsManager,
     Keyboard,
@@ -51,7 +47,7 @@ define([
             this.canvas = canvas;
             this.gameState = gameState;
 
-            // get canvas context if it's 2D
+            // get canvas context, only for HTML canvas
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_CANVAS:
                 this.canvasContext = canvas.getContext('2d');
@@ -80,6 +76,12 @@ define([
             case this.gameState.RENDERER_THREE_JS:
                 this.assetManager = new ThreeJSAssetsManager();
                 break;
+
+            case this.gameState.RENDERER_CANVAS:
+                this.assetManager = new CanvasAssetsManager({
+                    canvasContext: this.canvasContext
+                });
+                break;
             }
 
             // load sound after load graphics assets
@@ -89,7 +91,7 @@ define([
                     that._loadSounds(callback);
                 });
             } else {
-                this._loadSounds(callback);
+                // TODO error exception here...
             }
         },
 
@@ -135,17 +137,7 @@ define([
                     (Math.random() - 0.5) * 4 * (50 - radius),
                     Math.random() * 2 - 1, 0));
 
-            // create view based on game renderer
-            var displayComponent;
-            switch (this.gameState.renderer) {
-            case this.gameState.RENDERER_CANVAS:
-                displayComponent = new AsteroidView(radius, this.canvasContext);
-                break;
-
-            default:
-                displayComponent = this.assetManager.createAsteroidsShape(radius);
-                break;
-            }
+            var displayComponent = this.assetManager.createAsteroidsShape(radius);
             if (displayComponent) {
                 asteroid.add(new Display(displayComponent));
             }
@@ -166,7 +158,7 @@ define([
                 .add(new Gun(8, 0, 0.3, 2))
                 .add(new GunControls(Keyboard.Z));
 
-            // create view based on game renderer
+            // handle motion control based on game renderer
             var motionControl;
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_THREE_JS:
@@ -182,17 +174,8 @@ define([
                 spaceship.add(motionControl);
             }
 
-            // create view based on game renderer
-            var displayComponent;
-            switch (this.gameState.renderer) {
-            case this.gameState.RENDERER_CANVAS:
-                displayComponent = new SpaceshipView(this.canvasContext);
-                break;
-
-            default:
-                displayComponent = this.assetManager.createSpaceShipShape();
-                break;
-            }
+            // create view
+            var displayComponent = this.assetManager.createSpaceShipShape();
             if (displayComponent) {
                 spaceship.add(new Display(displayComponent));
             }
@@ -218,17 +201,8 @@ define([
                     parentPosition.rotation, 0))
                 .add(new Motion(cos * 150, sin * 150, 0, 0));
 
-            // create view based on game renderer
-            var displayComponent;
-            switch (this.gameState.renderer) {
-            case this.gameState.RENDERER_CANVAS:
-                displayComponent = new BulletView(this.canvasContext);
-                break;
-
-            default:
-                displayComponent = this.assetManager.createBulletShape();
-                break;
-            }
+            // create view
+            var displayComponent = this.assetManager.createBulletShape();
             if (displayComponent) {
                 bullet.add(new Display(displayComponent));
             }
