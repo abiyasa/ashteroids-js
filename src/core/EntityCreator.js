@@ -160,14 +160,17 @@ define([
 
             // handle motion control based on game renderer
             var motionControl;
+            var soundFXThrust = createjs.Sound.createInstance('sound-thrust');
             switch (this.gameState.renderer) {
             case this.gameState.RENDERER_THREE_JS:
                 // invert controller for 3D mode
-                motionControl = new MotionControls(Keyboard.RIGHT, Keyboard.LEFT, Keyboard.UP, 100, 3);
+                motionControl = new MotionControls(Keyboard.RIGHT, Keyboard.LEFT,
+                    Keyboard.UP, 100, 3, soundFXThrust);
                 break;
 
             default:
-                motionControl = new MotionControls(Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, 100, 3);
+                motionControl = new MotionControls(Keyboard.LEFT, Keyboard.RIGHT,
+                    Keyboard.UP, 100, 3, soundFXThrust);
                 break;
             }
             if (motionControl) {
