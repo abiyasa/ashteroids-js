@@ -1,5 +1,5 @@
 define([
-    'ash', 'components/Bullet', 'game/components/position'
+    'ash', 'components/Bullet', 'components/Position'
 ], function (Ash, Bullet, Position) {
     var BulletCollision = Ash.Node.extend({
         bullet: null,

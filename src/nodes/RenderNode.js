@@ -2,7 +2,7 @@
  * Node for rendering Display component
  */
 define([
-    'ash', 'game/components/position', 'components/Display'
+    'ash', 'components/Position', 'components/Display'
 ], function (Ash, Position, Display) {
     var Render = Ash.Node.extend({
         position: null,

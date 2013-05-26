@@ -6,7 +6,7 @@ define([
     'components/Asteroid',
     'components/SpaceShip',
     'components/Bullet',
-    'game/components/position',
+    'components/Position',
     'components/Motion',
     'components/MotionControl',
     'components/Gun',

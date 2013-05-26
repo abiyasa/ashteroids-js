@@ -1,5 +1,5 @@
 define([
-    'ash', 'components/Asteroid', 'game/components/position'
+    'ash', 'components/Asteroid', 'components/Position'
 ], function (Ash, Asteroid, Position) {
     var AsteroidCollision = Ash.Node.extend({
         asteroid: null,

@@ -1,5 +1,5 @@
 define([
-    'ash', 'game/components/position', 'components/Motion'
+    'ash', 'components/Position', 'components/Motion'
 ], function (Ash, Position, Motion) {
     var Movement = Ash.Node.extend({
         position: null,
