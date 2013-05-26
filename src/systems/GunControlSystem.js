@@ -1,3 +1,6 @@
+/**
+ * System to control gun shoots based on key poll or user control
+ */
 define([
     'ash',
     'nodes/GunControlNode'

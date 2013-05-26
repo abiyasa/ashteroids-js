@@ -1,3 +1,6 @@
+/**
+* System for maintaining bullet life time & removing them when their time is up
+*/
 define([
     'ash', 'nodes/BulletAgeNode'
 ], function (Ash, BulletAgeNode) {

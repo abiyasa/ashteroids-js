@@ -1,16 +1,19 @@
+/**
+* The main game engine
+*/
 define([
     'components/GameState',
-    'game/systems/gamemanager',
-    'game/systems/motioncontrolsystem',
-    'game/systems/guncontrolsystem',
-    'game/systems/bulletagesystem',
-    'game/systems/movementsystem',
-    'game/systems/collisionsystem',
+    'systems/GameManager',
+    'systems/MotionControlSystem',
+    'systems/GunControlSystem',
+    'systems/BulletAgeSystem',
+    'systems/MovementSystem',
+    'systems/CollisionSystem',
     'systems/CanvasRenderSystem',
     'systems/CreateJSRenderSystem',
     'systems/ThreeRenderSystem',
-    'game/systems/GameStateControlSystem',
-    'game/systems/systempriorities',
+    'systems/GameStateControlSystem',
+    'systems/SystemPriorities',
     'core/EntityCreator',
     'ash',
     'utils/tickprovider',
@@ -53,19 +56,19 @@ define([
             var creator = this.entityCreator = new EntityCreator(this.engine, canvas, this.gameState);
 
             this.engine.addSystem(new GameManager(this.gameState, creator),
-                SystemPriorities.preUpdate);
+                SystemPriorities.PRE_UPDATE);
             this.engine.addSystem(new GameStateControlSystem(KeyPoll, this.gameState),
-                SystemPriorities.preUpdate);
+                SystemPriorities.PRE_UPDATE);
             this.engine.addSystem(new MotionControlSystem(KeyPoll),
-                SystemPriorities.update);
+                SystemPriorities.UPDATE);
             this.engine.addSystem(new GunControlSystem(KeyPoll, creator),
-                SystemPriorities.update);
+                SystemPriorities.UPDATE);
             this.engine.addSystem(new BulletAgeSystem(creator),
-                SystemPriorities.update);
+                SystemPriorities.UPDATE);
             this.engine.addSystem(new MovementSystem(this.gameState),
-                SystemPriorities.move);
+                SystemPriorities.MOVE);
             this.engine.addSystem(new CollisionSystem(creator),
-                SystemPriorities.resolveCollisions);
+                SystemPriorities.RESOLVE_COLLISIONS);
 
             // handle multi renderer
             var rendererSystem;
@@ -84,7 +87,7 @@ define([
                 break;
             }
             if (rendererSystem) {
-                this.engine.addSystem(rendererSystem, SystemPriorities.render);
+                this.engine.addSystem(rendererSystem, SystemPriorities.RENDER);
             }
 
             this.tickProvider = new TickProvider(stats);

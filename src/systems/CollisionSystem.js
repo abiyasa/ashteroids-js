@@ -1,3 +1,6 @@
+/**
+* System for handling all collisions  (ship, asteroids, bullet, ...)
+*/
 define([
     'ash', 'nodes/SpaceshipCollisionNode', 'nodes/AsteroidCollisionNode',
     'nodes/BulletCollisionNode'
@@ -28,6 +31,7 @@ define([
         update: function (time) {
             var bullet, asteroid, spaceship;
 
+            // collision bullet with asteroids
             for (bullet = this.bullets.head; bullet; bullet = bullet.next) {
                 for (asteroid = this.asteroids.head; asteroid; asteroid = asteroid.next) {
                     if (asteroid.position.position.distanceTo(bullet.position.position) <=
@@ -40,6 +44,7 @@ define([
                 }
             }
 
+            // collision spaceship with asteroids
             for (spaceship = this.spaceships.head; spaceship; spaceship = spaceship.next) {
                 for (asteroid = this.asteroids.head; asteroid; asteroid = asteroid.next) {
                     if (asteroid.position.position.distanceTo(spaceship.position.position) <=

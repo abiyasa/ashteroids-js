@@ -5,12 +5,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'game/asteroids',
+    'AsteroidsGameEngine',
     'stats',
     'text!templates/PlayScreen.html',
     'text!templates/PauseDialog.html',
     'text!templates/LoadingDialog.html'
-], function ($, _, Backbone, Asteroids, Stats, screenTemplate,
+], function ($, _, Backbone, AsteroidsGameEngine, Stats, screenTemplate,
     pauseDialogTemplate, loadingDialogTemplate) {
     'use strict';
 
@@ -95,24 +95,25 @@ define([
 
         // starts the game. Make sure everything has inited & rendered
         startGame: function () {
-            this.asteroids = new Asteroids(this.gameCanvas, this.stats, this.gameConfig);
+            this.gameEngine = new AsteroidsGameEngine(this.gameCanvas, this.stats,
+                this.gameConfig);
             this.isPaused = false;
 
             // load game assets
             this._showDialog(this.templateLoadingDialog());
             var that = this;
-            this.asteroids.loadAssets(function () {
+            this.gameEngine.loadAssets(function () {
                 // the game is ready to be started
                 that._removeDialog();
 
-                that.asteroids.gameStateChanged.add(that.onGameStateChanged, that);
-                that.asteroids.start();
+                that.gameEngine.gameStateChanged.add(that.onGameStateChanged, that);
+                that.gameEngine.start();
             });
         },
 
         // Stops & destroy the game
         stopGame: function () {
-            this.asteroids.stop();
+            this.gameEngine.stop();
         },
 
         // handle game state changes
@@ -141,7 +142,7 @@ define([
             if (!this.isPaused) {
                 this.isPaused = true;
 
-                this.asteroids.pause();
+                this.gameEngine.pause();
 
                 // show pause menu
                 this._showDialog(this.templatePauseDialog());
@@ -156,7 +157,7 @@ define([
                 // remove pause dialog
                 this._removeDialog();
 
-                this.asteroids.unpause();
+                this.gameEngine.unpause();
             }
         },
 

@@ -1,3 +1,6 @@
+/**
+* System to update the motion data (speed, rotation) based on the user control
+*/
 define([
     'ash', 'nodes/MotionControlNode'
 ], function (Ash, MotionControlNode) {
@@ -35,8 +38,9 @@ define([
                 position.rotation += control.rotationRate * time;
             }
             if (this.keyPoll.isDown(control.accelerate)) {
-                motion.velocity.x += Math.cos(position.rotation) * control.accelerationRate * time;
-                motion.velocity.y += Math.sin(position.rotation) * control.accelerationRate * time;
+                var acceleration = control.accelerationRate * time;
+                motion.velocity.x += Math.cos(position.rotation) * acceleration;
+                motion.velocity.y += Math.sin(position.rotation) * acceleration;
             }
         }
     });

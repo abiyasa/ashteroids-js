@@ -1,3 +1,6 @@
+/**
+* System for updating entity positon & speed based on its motion/movement data
+*/
 define([
     'ash', 'nodes/MovementNode'
 ], function (Ash, MovementNode) {
@@ -47,9 +50,11 @@ define([
 
             position.rotation += motion.angularVelocity * time;
 
+            // calculate damp
             if (motion.damping > 0) {
-                var xDamp = Math.abs(Math.cos(position.rotation) * motion.damping * time);
-                var yDamp = Math.abs(Math.sin(position.rotation) * motion.damping * time);
+                var damp = motion.damping * time;
+                var xDamp = Math.abs(Math.cos(position.rotation) * damp);
+                var yDamp = Math.abs(Math.sin(position.rotation) * damp);
                 if (motion.velocity.x > xDamp) {
                     motion.velocity.x -= xDamp;
                 } else if (motion.velocity.x < -xDamp) {

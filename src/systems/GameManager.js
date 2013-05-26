@@ -1,3 +1,7 @@
+/**
+* Managing the game flow (game over, next level, ...)
+* TODO: re-work this class, maybe we can merge some of its methods
+*/
 define([
     'ash', 'nodes/SpaceshipCollisionNode',
     'nodes/AsteroidCollisionNode', 'nodes/BulletCollisionNode',
@@ -12,7 +16,7 @@ define([
         asteroids: null,
         bullets: null,
 
-        constructor: function (gameState, creator){
+        constructor: function (gameState, creator) {
             this.gameState = gameState;
             this.creator = creator;
         },
@@ -24,51 +28,54 @@ define([
         },
 
         update: function (time) {
-            if(this.spaceships.empty())
-            {
-                if(this.gameState.lives > 0)
-                {
-                    var newSpaceshipPosition = new Point(this.gameState.width * 0.5, this.gameState.height * 0.5);
+            // check if spaceship is just died
+            if (this.spaceships.empty()) {
+                if (this.gameState.lives > 0) {
+                    // middle of the space
+                    var newSpaceshipPosition = new Point(this.gameState.width * 0.5,
+                        this.gameState.height * 0.5);
+
+                    // make sure the area is clear before adding the spaceship
                     var clearToAddSpaceship = true;
-                    for(var asteroid = this.asteroids.head; asteroid; asteroid = asteroid.next)
-                    {
-                        if(asteroid.position.position.distanceTo(newSpaceshipPosition) <= asteroid.position.collisionRadius + 50)
-                        {
+                    var distanceToShip;
+                    for (var asteroid = this.asteroids.head; asteroid; asteroid = asteroid.next) {
+                        distanceToShip = asteroid.position.position.distanceTo(newSpaceshipPosition);
+                        if (distanceToShip <= asteroid.position.collisionRadius + 50) {
                             clearToAddSpaceship = false;
                             break;
                         }
                     }
-                    if(clearToAddSpaceship)
-                    {
+
+                    if (clearToAddSpaceship) {
                         this.creator.createSpaceship(this.gameState.width * 0.5, this.gameState.height * 0.5);
                         this.gameState.lives--;
                     }
-                }
-                else
-                {
+                } else {
                     // game over
+                    this.gameState.status = this.gameState.STATUS_GAME_OVER;
                 }
             }
 
-            if(this.asteroids.empty() && this.bullets.empty() && !this.spaceships.empty())
-            {
-                var position;
+            // all asteroids are gone
+            if (this.asteroids.empty() && this.bullets.empty() &&
+                !this.spaceships.empty()) {
 
                 // next level
-                var spaceship = this.spaceships.head;
                 this.gameState.level++;
+
+                // generate asteroids
+                var spaceship = this.spaceships.head;
+                var position;
                 var asteroidCount = 2 + this.gameState.level;
-                for(var i = 0; i < asteroidCount; ++i)
-                {
+                for (var i = 0; i < asteroidCount; ++i) {
                     // check not on top of spaceship
-                    do
-                    {
+                    do {
                         position = new Point(
                             Math.random() * this.gameState.width,
                             Math.random() * this.gameState.height
                        );
-                    }
-                    while (position.distanceTo(spaceship.position.position) <= 80);
+                    } while (position.distanceTo(spaceship.position.position) <= 80);
+
                     this.creator.createAsteroid(30, position.x, position.y);
                 }
             }
