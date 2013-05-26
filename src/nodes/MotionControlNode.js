@@ -1,3 +1,6 @@
+/**
+* Node for controlling motion, will be processed by MotionControlSystem
+*/
 define([
     'ash', 'components/MotionControl',
     'components/Position', 'components/Motion'

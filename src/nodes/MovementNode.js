@@ -1,3 +1,6 @@
+/**
+* Node for movement system
+*/
 define([
     'ash', 'components/Position', 'components/Motion'
 ], function (Ash, Position, Motion) {

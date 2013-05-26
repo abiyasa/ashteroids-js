@@ -1,3 +1,6 @@
+/**
+* Node for gun control system
+*/
 define([
     'ash', 'components/GunControl', 'components/Gun', 'components/Position'
 ], function (Ash, GunControls, Gun, Position) {

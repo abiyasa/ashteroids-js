@@ -1,6 +1,6 @@
 define([
-    'ash', 'game/nodes/spaceshipcollision', 'game/nodes/asteroidcollision',
-    'game/nodes/bulletcollision'
+    'ash', 'nodes/SpaceshipCollisionNode', 'nodes/AsteroidCollisionNode',
+    'nodes/BulletCollisionNode'
 ], function (Ash, SpaceshipCollisionNode, AsteroidCollisionNode, BulletCollisionNode) {
     var CollisionSystem = Ash.System.extend({
         creator: null,

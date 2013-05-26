@@ -1,5 +1,5 @@
 define([
-    'ash', 'game/nodes/motioncontrol'
+    'ash', 'nodes/MotionControlNode'
 ], function (Ash, MotionControlNode) {
     var MotionControlSystem = Ash.System.extend({
         keyPoll: null,

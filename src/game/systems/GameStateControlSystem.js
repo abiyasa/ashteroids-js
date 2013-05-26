@@ -4,7 +4,7 @@
  */
 define([
     'ash',
-    'game/nodes/GameState',
+    'nodes/GameStateNode',
     'components/GameState',
     'utils/keyboard'
 ], function (Ash, GameStateNode, GameState, Keyboard) {

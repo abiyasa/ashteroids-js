@@ -1,6 +1,6 @@
 define([
     'ash',
-    'game/nodes/guncontrol'
+    'nodes/GunControlNode'
 ], function (Ash, GunControlNode) {
     var GunControlSystem = Ash.System.extend({
         keyPoll: null,

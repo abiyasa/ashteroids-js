@@ -1,5 +1,5 @@
 define([
-    'ash', 'game/nodes/bulletage'
+    'ash', 'nodes/BulletAgeNode'
 ], function (Ash, BulletAgeNode) {
     var BulletAgeSystem = Ash.System.extend({
         creator: null,

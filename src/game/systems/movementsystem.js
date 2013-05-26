@@ -1,5 +1,5 @@
 define([
-    'ash', 'game/nodes/movement'
+    'ash', 'nodes/MovementNode'
 ], function (Ash, MovementNode) {
     var MovementSystem = Ash.System.extend({
         gameState: null,

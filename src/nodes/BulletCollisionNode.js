@@ -1,3 +1,6 @@
+/**
+* Node for bullet, will processed by collision system
+*/
 define([
     'ash', 'components/Bullet', 'components/Position'
 ], function (Ash, Bullet, Position) {

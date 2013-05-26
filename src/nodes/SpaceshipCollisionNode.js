@@ -1,3 +1,6 @@
+/**
+* Node for spaceshop, will processed by collision system
+*/
 define([
     'ash', 'components/SpaceShip', 'components/Position'
 ], function (Ash, Spaceship, Position) {
