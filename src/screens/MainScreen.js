@@ -22,6 +22,12 @@ define([
 
         render: function () {
             $(this.el).html(this.template());
+
+            // activate carousel
+            this.$('.carousel').carousel({
+                interval: false
+            });
+
             return this;
         },
 
