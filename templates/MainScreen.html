@@ -1,5 +1,8 @@
 <div class="row">
     <h1>Ashteroids</h1>
+    <p>
+        Simple Asteroids game using <a href="https://github.com/brejep/ash-js">Ash Framework</a>
+    </p>
 </div>
 
 <div id="myCarousel" class="logo-container carousel slide">
@@ -14,35 +17,36 @@
     <!-- Carousel items -->
     <div class="carousel-inner">
         <div class="active item">
-            <!--<img src="" alt="">-->
-            <div class="carousel-thumb" style="background-color: #3498db; "></div>
-            <div class="carousel-caption">
+            <div class="carousel-thumb canvas">
                 <h4>HTML5 Canvas</h4>
-                <p>Asteroids using HTML5 Canvas. ALl game objects are drawn using graphics instructions (without bitmap or spritesheet)</p>
+            </div>
+            <div class="carousel-caption">
+                <p>Render the game using HTML5 Canvas <br /> with simple shapes</p>
             </div>
         </div>
         <div class="item">
-            <!--<img src="" alt="">-->
-            <div class="carousel-thumb" style="background-color: #e74c3c; "></div>
-            <div class="carousel-caption">
+            <div class="carousel-thumb createjs">
                 <h4>Simple CreateJS</h4>
-                <p>Asteroids using CreateJS. ALl game objects are drawn using graphics instructions from CreateJS (without bitmap or spritesheet)</p>
+            </div>
+            <div class="carousel-caption">
+                <p>Render the game using <a href="http://www.createjs.com/">CreateJS</a> <br /> with simple shapes</p>
             </div>
         </div>
         <div class="item">
-            <!--<img src="" alt="">-->
-            <div class="carousel-thumb" style="background-color: #2ecc71; "></div>
-            <div class="carousel-caption">
+            <div class="carousel-thumb createjs-sprite">
                 <h4>CreateJS Sprites</h4>
-                <p>Asteroids using CreateJS and Sprites</p>
+            </div>
+            <div class="carousel-caption">
+                <p>Render the game using <a href="http://www.createjs.com/">CreateJS</a> and sprite sheet</p>
             </div>
         </div>
         <div class="item">
-            <!--<img src="" alt="">-->
-            <div class="carousel-thumb" style="background-color: #f1c40f; "></div>
-            <div class="carousel-caption">
+            <div class="carousel-thumb threejs">
                 <h4>ThreeJS</h4>
-                <p>Asteroids in 3D using ThreeJS. WebGL is required!</p>
+            </div>
+            <div class="carousel-caption">
+                <p>Render the game in 3D using <a href="http://threejs.org/">Three.js</a> with simple geometries.
+                <p>WebGL-enabled browser is required!</p>
             </div>
         </div>
     </div>
@@ -53,12 +57,7 @@
 </div>
 
 <div class="row">
-    <p>An asteroids game using <a href="https://github.com/brejep/ash-js">Ash Framework</a>,
-    HTML5 Canvas, <a href="http://www.createjs.com/">CreateJS</a>, and <a href="http://threejs.org/">three.js</a></p>
-</div>
-
-<div>
-    <button id="button-start" class="btn btn-primary btn-large">Start</button>
-    <button id="button-settings" class="btn">Settings</button>
-    <button id="button-about" class="btn">About</button>
+    <button id="button-start" class="btn btn-primary btn-large">Play</button>
+    <button id="button-settings" class="btn btn-link">Settings</button>
+    <button id="button-about" class="btn btn-link">About</button>
 </div>

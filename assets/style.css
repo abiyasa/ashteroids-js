@@ -13,8 +13,8 @@
 }
 
 .logo-container {
-    width: 100%;
-    height: 300px;
+    width: 500px;
+    margin: auto;
 }
 
 .logo-text {
@@ -54,3 +54,25 @@
 .canvas-game {
     background-color: #2C3E50;
 }
+
+/* overrideding carousel.css */
+.carousel-indicators {
+  top: 240px;
+  left: 210px;
+}
+.carousel-thumb.threejs {
+    background-color: #f1c40f;
+}
+.carousel-thumb.threejs {
+    background-color: #f1c40f;
+}
+.carousel-thumb.createjs-sprite {
+    background-color: #2ecc71;
+}
+.carousel-thumb.createjs {
+    background-color: #e74c3c;
+}
+.carousel-thumb.canvas {
+    background-color: #3498db;
+}
+

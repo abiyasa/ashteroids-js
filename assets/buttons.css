@@ -55,9 +55,14 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
+  .btn.btn-link {
+    background-color: inherit;
+    color: #1abc9c;
+    text-decoration: underline; }
   .btn.btn-large {
     padding-bottom: 12px;
-    padding-top: 13px; }
+    padding-top: 13px;
+    width: 30%; }
   .btn.btn-primary {
     background-color: #1abc9c; }
     .btn.btn-primary:hover, .btn.btn-primary:focus {
