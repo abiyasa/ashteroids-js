@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         jshint: {
             files: [
                 'Gruntfile.js', 'build.js', 'build.min.js',
-                'src/**/*.js', 'lib/brejep/*.js'
+                'src/**/*.js', 'lib/utils/*.js'
             ],
             options: {
                 // Define globals exposed by modern browsers.
