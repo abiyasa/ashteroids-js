@@ -2,7 +2,7 @@
 * System to update the motion data (speed, rotation) based on the user control
 */
 define([
-    'ash', 'nodes/MotionControlNode', 'sound'
+    'ash', 'nodes/MotionControlNode', 'createjs'
 ], function (Ash, MotionControlNode, createjs) {
     var MotionControlSystem = Ash.System.extend({
         keyPoll: null,

@@ -6,12 +6,9 @@
     "dependencies": {
         "backbone": "latests",
         "underscore": "latests",
-        "jquery": "~2.0.0",
         "requirejs-text": "latest",
         "stats.js": "latest",
-        "easeljs": "git://github.com/CreateJS/EaselJS.git",
-        "preloadjs": "git://github.com/CreateJS/PreloadJS.git",
-        "soundjs": "git://github.com/CreateJS/SoundJS.git",
+        "almond": "latest",
         "threejs": "latest"
     }
 }

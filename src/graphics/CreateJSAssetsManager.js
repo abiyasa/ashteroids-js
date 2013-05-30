@@ -3,8 +3,7 @@
  */
 define([
     'ash',
-    'easel',
-    'preload'
+    'createjs'
 ], function (Ash, createjs) {
 
     var AssetManager = Ash.Class.extend({

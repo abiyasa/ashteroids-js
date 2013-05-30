@@ -16,8 +16,7 @@ define([
     'graphics/CreateJSAssetsManager',
     'graphics/ThreeJSAssetsManager',
     'utils/keyboard',
-    'preload',
-    'sound'
+    'createjs'
 ], function (
     Ash,
     Asteroid,

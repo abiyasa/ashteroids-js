@@ -19,9 +19,7 @@ requirejs.config({
         underscore: '../components/underscore/underscore',
         backbone: '../components/backbone/backbone',
         fillsnfixes: '../lib/utils/fillsnfixes',
-        easel: '../components/easeljs/lib/easeljs-0.6.1.min',
-        preload: '../components/preloadjs/lib/preloadjs-0.3.1.min',
-        sound: '../components/soundjs/lib/soundjs-0.4.1.min',
+        createjs: '../lib/utils/loader.createjs',
         three: '../components/threejs/build/three',
 
         // plugins
@@ -43,13 +41,7 @@ requirejs.config({
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
-        easel: {
-            exports: 'createjs'
-        },
-        preload: {
-            exports: 'createjs'
-        },
-        sound: {
+        createjs: {
             exports: 'createjs'
         },
         three: {
@@ -58,8 +50,9 @@ requirejs.config({
     },
 
     // target amd loader shim as the main module, path is relative to baseUrl.
-    name: '../lib/vendor/almond',
+    name: '../components/almond/almond',
 
+    // DON'T touch this since it will altered by grunt. See Gruntfile.js
     optimize: 'none',
 
     // files to include along with almond.  only lib/skeleton.js is defined, as
@@ -67,8 +60,10 @@ requirejs.config({
     include: [ 'MainApp' ],
 
     // Initialize the application with the main application file.
+    // grunt will empty this during build/optimization. See Gruntfile.js
     deps: ['MainApp'],
 
     // build file destination, relative to the build file itself
+    // DON'T touch this since it will altered by grunt. See Gruntfile.js
     out: '../build/ashteroids.js'
 });
