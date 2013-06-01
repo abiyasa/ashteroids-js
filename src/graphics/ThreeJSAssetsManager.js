@@ -45,8 +45,7 @@ define([
          */
         createSpaceShipShape: function (options) {
             // create sphere & material
-            //var geometry = new THREE.TetrahedronGeometry (15);
-            var geometry = new THREE.CubeGeometry(15, 5, 5, 1, 1, 1);
+            var geometry = this._createPyramidGeometry(15);
             var material = new THREE.MeshLambertMaterial({
                 color: 0xE74C3C,
                 emissive: 0xE74C3C,
@@ -73,8 +72,31 @@ define([
 
             // create mesh
             return new THREE.Mesh(geometry, material);
-        }
+        },
 
+        /**
+        * Creates pyramid like shaped geometry for the spaceship
+        * @internal
+        */
+        _createPyramidGeometry: function (radius, detail) {
+            var vertices = [
+                [ -1,  1,  1 ], [ -1, 1, -1 ], [ -1, -1, -1 ], [ -1, -1, 1 ],
+                [ 3,  0,  0 ]
+            ];
+
+            var faces = [
+                [ 4, 0, 3 ], [ 4, 1, 0 ], [ 4, 2, 1 ], [ 4, 3, 2 ],
+                [ 0, 1, 2], [ 2, 3, 0 ]
+            ];
+
+            var geometry = new THREE.PolyhedronGeometry(vertices, faces,
+                radius, detail);
+            var matrix = new THREE.Matrix4()
+                .makeScale(1, 1, 0.5);
+            geometry.applyMatrix(matrix);
+
+            return geometry;
+        }
     });
 
     return AssetManager;
