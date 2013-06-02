@@ -5,7 +5,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/MainScreen.html'
+    'text!templates/MainScreen.html',
+    'carousel'
 ], function ($, _, Backbone, screenTemplate) {
     'use strict';
 

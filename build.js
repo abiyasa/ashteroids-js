@@ -23,7 +23,8 @@ requirejs.config({
         three: '../components/threejs/build/three',
 
         // plugins
-        text: '../components/requirejs-text/text'
+        text: '../components/requirejs-text/text',
+        carousel: '../lib/utils/bootstrap-carousel'
     },
 
     // Sets the configuration for your third party scripts that are not AMD compatible
@@ -46,6 +47,10 @@ requirejs.config({
         },
         three: {
             exports: 'THREE'
+        },
+        carousel: {
+            deps: ['jquery'],
+            exports: 'plugins'
         }
     },
 
